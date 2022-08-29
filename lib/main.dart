@@ -1,5 +1,4 @@
-import 'package:fish/pages/home_page.dart';
-import 'package:fish/pages/splash_page.dart';
+import 'package:fish/pages/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

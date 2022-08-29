@@ -1,10 +1,13 @@
 import 'dart:async';
 
+import 'package:fish/pages/splash/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/theme.dart';
+import 'package:get/get.dart';
 
 class SplashPage extends StatelessWidget {
-  const SplashPage({Key? key}) : super(key: key);
+  SplashPage({Key? key}) : super(key: key);
+  final splashController = Get.put(SplashController());
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class SplashPage extends StatelessWidget {
             ),
           ),
           Text(
-            "FISHERY+",
+            "Fishery+",
             style: blueTextStyle.copyWith(
               fontSize: 26,
               fontWeight: bold,
@@ -34,8 +37,14 @@ class SplashPage extends StatelessWidget {
             "by JFT",
             style: secondaryTextStyle.copyWith(
               fontSize: 18,
-              fontWeight: semiBold,
+              fontWeight: medium,
             ),
+          ),
+          SizedBox(
+            height: 40,
+          ),
+          CircularProgressIndicator(
+            color: secondaryColor,
           ),
         ]),
       ),
