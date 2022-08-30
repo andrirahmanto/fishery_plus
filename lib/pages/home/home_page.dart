@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:fish/pages/component/fish_card.dart';
 import 'package:fish/pages/component/statistic_card.dart';
 import 'package:fish/pages/component/water_card.dart';
+import 'package:fish/pages/home/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:fish/theme.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,6 +13,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final HomeController controller = Get.put(HomeController());
+
     Widget title() {
       return Container(
         margin: EdgeInsets.only(
@@ -46,13 +50,13 @@ class HomePage extends StatelessWidget {
                       flex: 1,
                       child: StatisticCard(
                         title: 'Kolam',
-                        value: 20,
+                        value: controller.statistic!.total_pond,
                       )),
                   Expanded(
                       flex: 1,
                       child: StatisticCard(
                         title: 'Kolam Aktif',
-                        value: 10,
+                        value: controller.statistic!.active_pond,
                       )),
                 ],
               ),
@@ -67,14 +71,14 @@ class HomePage extends StatelessWidget {
                       flex: 1,
                       child: StatisticCard(
                         title: 'Ikan Hidup',
-                        value: 182,
+                        value: controller.statistic!.fish_live,
                         unit: 'Ekor',
                       )),
                   Expanded(
                       flex: 1,
                       child: StatisticCard(
                         title: 'Ikan Mati',
-                        value: 89,
+                        value: controller.statistic!.fish_death,
                         unit: 'Ekor',
                       )),
                 ],
@@ -90,14 +94,14 @@ class HomePage extends StatelessWidget {
                       flex: 1,
                       child: StatisticCard(
                         title: 'Panen 2022',
-                        value: 109,
+                        value: controller.statistic!.fish_harvested,
                         unit: 'Kg',
                       )),
                   Expanded(
                       flex: 1,
                       child: StatisticCard(
                         title: 'Total Pakan',
-                        value: 223,
+                        value: controller.statistic!.total_feed_dose,
                         unit: 'Kg',
                       )),
                 ],
@@ -201,18 +205,18 @@ class HomePage extends StatelessWidget {
               Row(children: [
                 WaterCard(
                   title: "pH",
-                  normal: 6,
-                  abnormal: 6,
+                  normal: controller.statistic!.ph_normal,
+                  abnormal: controller.statistic!.ph_abnormal,
                 ),
                 WaterCard(
                   title: "DO",
-                  normal: 6,
-                  abnormal: 6,
+                  normal: controller.statistic!.do_normal,
+                  abnormal: controller.statistic!.do_abnormal,
                 ),
                 WaterCard(
                   title: "Flok",
-                  normal: 6,
-                  abnormal: 6,
+                  normal: controller.statistic!.floc_normal,
+                  abnormal: controller.statistic!.floc_abnormal,
                 ),
               ]),
             ],
@@ -228,7 +232,10 @@ class HomePage extends StatelessWidget {
         fishTitle(),
         fish(),
         waterTitle(),
-        water()
+        water(),
+        SizedBox(
+          height: 10,
+        )
       ],
     );
   }
