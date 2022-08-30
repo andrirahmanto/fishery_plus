@@ -20,7 +20,7 @@ class DashboardPage extends StatelessWidget {
           backgroundColor: backgroundColor1,
           body: SafeArea(
             child: IndexedStack(
-              index: controller.tabIndex!,
+              index: controller.tabIndex,
               children: const [
                 HomePage(),
                 PondPage(),
