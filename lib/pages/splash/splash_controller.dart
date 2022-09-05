@@ -13,7 +13,7 @@ class SplashController extends GetxController {
   }
 
   Future<void> loading() async {
-    Timer(const Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 2), () {
       Get.off(const DashboardPage());
     });
   }

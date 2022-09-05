@@ -5,19 +5,22 @@ import 'package:fish/service/statistic_service.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  final _statistic = StatisticModel().obs;
+  var isLoading = false.obs;
 
-  StatisticModel? get statistic => _statistic();
+  final statistic = StatisticModel().obs;
 
   @override
-  void onInit() {
-    getStatisticData();
-
+  void onInit() async {
+    await getStatisticData();
     super.onInit();
   }
 
   Future<void> getStatisticData() async {
-    var statistic = await StatisticService().getStatistic();
-    _statistic(statistic);
+    isLoading.value = true;
+    StatisticModel statisticData = await StatisticService().getStatistic();
+    statistic.value = statisticData;
+    Timer(const Duration(seconds: 1), () {
+      isLoading.value = false;
+    });
   }
 }

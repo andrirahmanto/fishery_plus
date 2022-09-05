@@ -50,13 +50,13 @@ class HomePage extends StatelessWidget {
                       flex: 1,
                       child: StatisticCard(
                         title: 'Kolam',
-                        value: controller.statistic!.total_pond,
+                        value: controller.statistic.value.total_pond,
                       )),
                   Expanded(
                       flex: 1,
                       child: StatisticCard(
                         title: 'Kolam Aktif',
-                        value: controller.statistic!.active_pond,
+                        value: controller.statistic.value.active_pond,
                       )),
                 ],
               ),
@@ -71,14 +71,14 @@ class HomePage extends StatelessWidget {
                       flex: 1,
                       child: StatisticCard(
                         title: 'Ikan Hidup',
-                        value: controller.statistic!.fish_live,
+                        value: controller.statistic.value.fish_live,
                         unit: 'Ekor',
                       )),
                   Expanded(
                       flex: 1,
                       child: StatisticCard(
                         title: 'Ikan Mati',
-                        value: controller.statistic!.fish_death,
+                        value: controller.statistic.value.fish_death,
                         unit: 'Ekor',
                       )),
                 ],
@@ -94,14 +94,14 @@ class HomePage extends StatelessWidget {
                       flex: 1,
                       child: StatisticCard(
                         title: 'Panen 2022',
-                        value: controller.statistic!.fish_harvested,
+                        value: controller.statistic.value.fish_harvested,
                         unit: 'Kg',
                       )),
                   Expanded(
                       flex: 1,
                       child: StatisticCard(
                         title: 'Total Pakan',
-                        value: controller.statistic!.total_feed_dose,
+                        value: controller.statistic.value.total_feed_dose,
                         unit: 'Kg',
                       )),
                 ],
@@ -205,18 +205,18 @@ class HomePage extends StatelessWidget {
               Row(children: [
                 WaterCard(
                   title: "pH",
-                  normal: controller.statistic!.ph_normal,
-                  abnormal: controller.statistic!.ph_abnormal,
+                  normal: controller.statistic.value.ph_normal,
+                  abnormal: controller.statistic.value.ph_abnormal,
                 ),
                 WaterCard(
                   title: "DO",
-                  normal: controller.statistic!.do_normal,
-                  abnormal: controller.statistic!.do_abnormal,
+                  normal: controller.statistic.value.do_normal,
+                  abnormal: controller.statistic.value.do_abnormal,
                 ),
                 WaterCard(
                   title: "Flok",
-                  normal: controller.statistic!.floc_normal,
-                  abnormal: controller.statistic!.floc_abnormal,
+                  normal: controller.statistic.value.floc_normal,
+                  abnormal: controller.statistic.value.floc_abnormal,
                 ),
               ]),
             ],
@@ -225,18 +225,28 @@ class HomePage extends StatelessWidget {
       );
     }
 
-    return ListView(
-      children: [
-        title(),
-        statistic(),
-        fishTitle(),
-        fish(),
-        waterTitle(),
-        water(),
-        SizedBox(
-          height: 10,
-        )
-      ],
-    );
+    return Obx(() {
+      if (controller.isLoading.value == false) {
+        return ListView(
+          children: [
+            title(),
+            statistic(),
+            fishTitle(),
+            fish(),
+            waterTitle(),
+            water(),
+            SizedBox(
+              height: 10,
+            )
+          ],
+        );
+      } else {
+        return Center(
+          child: CircularProgressIndicator(
+            color: secondaryColor,
+          ),
+        );
+      }
+    });
   }
 }
