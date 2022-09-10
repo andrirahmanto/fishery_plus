@@ -15,6 +15,12 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
+  // @override
+  // void onReady() async {
+  //   await getStatisticData();
+  //   super.onReady();
+  // }
+
   Future<void> getStatisticData() async {
     isLoading.value = true;
     StatisticModel statisticData = await StatisticService().getStatistic();

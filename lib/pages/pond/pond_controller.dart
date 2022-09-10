@@ -18,8 +18,7 @@ class PondController extends GetxController {
     isLoading.value = true;
     List<Pond> pondsData = await PondService().getPonds();
     ponds.addAll(pondsData);
-    Timer(const Duration(seconds: 1), () {
-      isLoading.value = false;
-    });
+
+    isLoading.value = false;
   }
 }

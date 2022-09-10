@@ -20,7 +20,7 @@ class PondPage extends StatelessWidget {
           right: defaultMargin,
         ),
         child: Text(
-          'Home',
+          'Pond',
           style: primaryTextStyle.copyWith(
             fontSize: 24,
             fontWeight: semiBold,
@@ -34,6 +34,7 @@ class PondPage extends StatelessWidget {
         return ListView(
           children: [
             title(),
+            // listPond(),
             SizedBox(
               height: 10,
             )

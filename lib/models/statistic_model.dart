@@ -5,11 +5,11 @@ class StatisticModel {
   int? fish_death;
   int? fish_harvested;
   int? total_feed_dose;
-  // double? fishes_weight_lele;
-  // int? fishes_weight_nilamerah;
-  // int? fishes_weight_nilahitam;
-  // int? fishes_weight_mas;
-  // int? fishes_weight_patin;
+  num? fishes_weight_lele;
+  num? fishes_weight_nilamerah;
+  num? fishes_weight_nilahitam;
+  num? fishes_weight_mas;
+  int? fishes_weight_patin;
   int? ph_normal;
   int? ph_abnormal;
   int? do_normal;
@@ -24,11 +24,11 @@ class StatisticModel {
       this.fish_death,
       this.fish_harvested,
       this.total_feed_dose,
-      // this.fishes_weight_lele,
-      // this.fishes_weight_nilamerah,
-      // this.fishes_weight_nilahitam,
-      // this.fishes_weight_mas,
-      // this.fishes_weight_patin,
+      this.fishes_weight_lele,
+      this.fishes_weight_nilamerah,
+      this.fishes_weight_nilahitam,
+      this.fishes_weight_mas,
+      this.fishes_weight_patin,
       this.ph_normal,
       this.ph_abnormal,
       this.do_normal,
@@ -43,11 +43,11 @@ class StatisticModel {
     fish_death = json['fish_death'];
     fish_harvested = json['fish_harvested'];
     total_feed_dose = json['total_feed_dose'];
-    // fishes_weight_nilahitam = json['fishes_weight'][1]["amount"];
-    // fishes_weight_nilamerah = json['fishes_weight'][2]["amount"];
-    // fishes_weight_lele = json['fishes_weight'][3]["amount"];
-    // fishes_weight_patin = json['fishes_weight'][4]["amount"];
-    // fishes_weight_mas = json['fishes_weight'][5]["amount"];
+    fishes_weight_nilahitam = json['fishes_weight'][0]["amount"];
+    fishes_weight_nilamerah = json['fishes_weight'][1]["amount"];
+    fishes_weight_lele = json['fishes_weight'][2]["amount"];
+    fishes_weight_patin = json['fishes_weight'][3]["amount"];
+    fishes_weight_mas = json['fishes_weight'][4]["amount"];
     ph_normal = json['water_quality']['ph']['normal'];
     ph_abnormal = json['water_quality']['ph']['abnormal'];
     do_normal = json['water_quality']['do']['normal'];

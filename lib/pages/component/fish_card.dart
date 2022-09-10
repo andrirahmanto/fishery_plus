@@ -4,7 +4,7 @@ import 'package:fish/theme.dart';
 
 class FishCard extends StatelessWidget {
   final String? title;
-  final int? value;
+  final num? value;
   final String? image;
 
   const FishCard({Key? key, this.title = '', this.value = 0, this.image = ''})

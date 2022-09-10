@@ -13,7 +13,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeController controller = Get.put(HomeController());
+    final HomeController controller =
+        Get.put(HomeController(), permanent: false);
 
     Widget title() {
       return Container(
@@ -145,22 +146,22 @@ class HomePage extends StatelessWidget {
               Row(children: [
                 FishCard(
                   title: "Lele",
-                  value: 200,
+                  value: controller.statistic.value.fishes_weight_lele!,
                   image: "assets/lele.png",
                 ),
                 FishCard(
                   title: "Nila Merah",
-                  value: 200,
+                  value: controller.statistic.value.fishes_weight_nilamerah!,
                   image: "assets/nilamerah.png",
                 ),
                 FishCard(
                   title: "Nila Hitam",
-                  value: 200,
+                  value: controller.statistic.value.fishes_weight_nilahitam!,
                   image: "assets/nilahitam.png",
                 ),
                 FishCard(
                   title: "Mas",
-                  value: 200,
+                  value: controller.statistic.value.fishes_weight_mas!,
                   image: "assets/mas.png",
                 ),
               ]),

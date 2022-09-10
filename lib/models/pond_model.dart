@@ -6,12 +6,12 @@ class Pond {
   String? location;
   String? shape;
   String? material;
-  double? length;
-  double? width;
-  double? diameter;
-  double? height;
-  double? area;
-  double? volume;
+  num? length;
+  num? width;
+  num? diameter;
+  num? height;
+  num? area;
+  num? volume;
   String? build_at;
   String? image_link;
   bool? isActive;

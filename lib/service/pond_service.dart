@@ -22,6 +22,8 @@ class PondService {
         ponds.add(Pond.fromJson(item));
       }
 
+      print(ponds);
+
       return ponds;
     } else {
       throw Exception('Gagal Get Ponds!');
