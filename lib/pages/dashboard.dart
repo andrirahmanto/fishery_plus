@@ -39,11 +39,11 @@ class DashboardPage extends StatelessWidget {
                 icon: Container(
                   margin: EdgeInsets.only(
                     top: 20,
-                    bottom: 10,
+                    bottom: 5,
                   ),
                   child: Image.asset(
-                    'assets/icon_home.png',
-                    width: 21,
+                    'assets/home_secondary.png',
+                    width: 25,
                     color: controller.tabIndex == 0
                         ? primaryColor
                         : Color(0xff808191),
@@ -55,11 +55,11 @@ class DashboardPage extends StatelessWidget {
                 icon: Container(
                   margin: EdgeInsets.only(
                     top: 20,
-                    bottom: 10,
+                    bottom: 5,
                   ),
                   child: Image.asset(
-                    'assets/icon_chat.png',
-                    width: 20,
+                    'assets/pond_secondary.png',
+                    width: 25,
                     color: controller.tabIndex == 1
                         ? primaryColor
                         : Color(0xff808191),
@@ -71,11 +71,11 @@ class DashboardPage extends StatelessWidget {
                 icon: Container(
                   margin: EdgeInsets.only(
                     top: 20,
-                    bottom: 10,
+                    bottom: 5,
                   ),
                   child: Image.asset(
-                    'assets/icon_wishlist.png',
-                    width: 20,
+                    'assets/fish_secondary.png',
+                    width: 25,
                     color: controller.tabIndex == 2
                         ? primaryColor
                         : Color(0xff808191),
@@ -87,11 +87,11 @@ class DashboardPage extends StatelessWidget {
                 icon: Container(
                   margin: EdgeInsets.only(
                     top: 20,
-                    bottom: 10,
+                    bottom: 5,
                   ),
                   child: Image.asset(
-                    'assets/icon_profile.png',
-                    width: 18,
+                    'assets/scale_secondary.png',
+                    width: 25,
                     color: controller.tabIndex == 3
                         ? primaryColor
                         : Color(0xff808191),
