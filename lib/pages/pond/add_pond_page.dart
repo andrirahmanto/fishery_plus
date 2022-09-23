@@ -435,12 +435,19 @@ class AddPondPage extends StatelessWidget {
     }
 
     Widget persegiInput() {
-      return ListView(
-        children: [
-          lengthInput(),
-          widthInput(),
-        ],
-      );
+      return Container(
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [widthInput(), lengthInput()],
+      ));
+    }
+
+    Widget bundarInput() {
+      return Container(
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [diameterInput()],
+      ));
     }
 
     return Obx(() {
@@ -457,15 +464,13 @@ class AddPondPage extends StatelessWidget {
               locationInput(),
               materialInput(),
               shapelInput(),
-              // Obx(() {
-              //   return shapeController.selected.value == 'bundar'
-              //       ? diameterInput()
-              //       : persegiInput();
-              // }),
+              shapeController.selected.value == 'persegi'
+                  ? persegiInput()
+                  : bundarInput(),
               heightInput(),
               registerButton(),
               SizedBox(
-                height: 10,
+                height: 8,
               )
             ],
           ),
