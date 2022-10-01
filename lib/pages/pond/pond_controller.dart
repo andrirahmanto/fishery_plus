@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:fish/models/pond_model.dart';
+import 'package:fish/pages/pond/pond_page.dart';
 import 'package:fish/service/pond_service.dart';
 import 'package:get/get.dart';
 
@@ -20,5 +21,11 @@ class PondController extends GetxController {
     ponds.addAll(pondsData);
 
     isLoading.value = false;
+  }
+
+  Future<void> pondRegister() async {
+    bool value = await PondService().pondRegister();
+    print(value);
+    Get.to(PondPage());
   }
 }

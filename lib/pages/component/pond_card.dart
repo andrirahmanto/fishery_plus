@@ -1,3 +1,4 @@
+import 'package:fish/models/pond_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fish/theme.dart';
@@ -6,22 +7,9 @@ import 'package:get/get.dart';
 import '../pond/detail_pond_page.dart';
 
 class PondCard extends StatelessWidget {
-  final String? pond;
-  final String? activation_date;
-  final num? activation_count;
-  final num? fish;
-  final String? status;
-  final Color? color;
+  final Pond pond;
 
-  const PondCard(
-      {Key? key,
-      this.pond,
-      this.activation_date,
-      this.activation_count,
-      this.fish,
-      this.status,
-      this.color})
-      : super(key: key);
+  const PondCard({Key? key, required this.pond}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +35,7 @@ class PondCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  this.pond!,
+                  pond.alias!,
                   style: blackTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: bold,
@@ -60,11 +48,11 @@ class PondCard extends StatelessWidget {
                   height: 30,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: this.color!,
+                    color: pond.getColor(),
                   ),
                   child: Center(
                     child: Text(
-                      this.status!,
+                      pond.pondStatusStr!,
                       style: blackTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: heavy,
@@ -87,7 +75,7 @@ class PondCard extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                    this.activation_date!,
+                    pond.getLastActivationDate(),
                     style: subtitleTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: regular,
@@ -108,7 +96,7 @@ class PondCard extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                    this.activation_count!.toString() + " Hari",
+                    "${pond.rangeFromLastActivation} Hari",
                     style: subtitleTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: regular,
@@ -129,7 +117,7 @@ class PondCard extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                    this.fish!.toString() + " Ekor",
+                    pond.getFishAlive() + " Ekor",
                     style: subtitleTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: regular,

@@ -40,37 +40,12 @@ class PondPage extends StatelessWidget {
               SizedBox(
                 width: defaultMargin,
               ),
-              PondCard(
-                pond: "Alpha",
-                activation_date: "01-09-2022",
-                activation_count: 90,
-                fish: 200,
-                status: "Aktif",
-                color: Colors.green,
-              ),
-              PondCard(
-                pond: "Beta",
-                activation_date: "-",
-                activation_count: 0,
-                fish: 0,
-                status: "Tidak Aktif",
-                color: alertColor,
-              ),
-              PondCard(
-                pond: "Charlie",
-                activation_date: "-",
-                activation_count: 0,
-                fish: 0,
-                status: "Panen",
-                color: Colors.amber,
-              ),
-              PondCard(
-                pond: "Delta",
-                activation_date: "-",
-                activation_count: 0,
-                fish: 0,
-                status: "Panen",
-                color: Colors.amber,
+              Column(
+                children: controller.ponds
+                    .map(
+                      (pond) => PondCard(pond: pond),
+                    )
+                    .toList(),
               ),
             ],
           ),
