@@ -30,7 +30,16 @@ class PondService {
     }
   }
 
-  Future<bool> pondRegister() async {
+  Future<bool> pondRegister({
+    required String? alias,
+    required String? location,
+    required String? shape,
+    required String? material,
+    required String? length,
+    required String? width,
+    required String? diameter,
+    required String? height,
+  }) async {
     final response = await http.post(
       Uri.parse(Urls.ponds),
       headers: {
@@ -38,13 +47,14 @@ class PondService {
       },
       encoding: Encoding.getByName('utf-8'),
       body: {
-        "alias": "fanta",
-        "location": "Blok 5",
-        "shape": "persegi",
-        "material": "tanah",
-        "length": "2",
-        "width": "2",
-        "height": '2',
+        "alias": alias,
+        "location": location,
+        "shape": shape,
+        "material": material,
+        "length": length,
+        "width": width,
+        "diameter": diameter,
+        "height": height,
       },
     );
 

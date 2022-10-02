@@ -16,14 +16,6 @@ class AddPondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PondController controller = Get.put(PondController());
-    TextEditingController aliasController = TextEditingController(text: '');
-    TextEditingController locationController = TextEditingController(text: '');
-    MaterialController materialController = MaterialController();
-    ShapeController shapeController = ShapeController();
-    TextEditingController diameterController = TextEditingController(text: '');
-    TextEditingController lengthController = TextEditingController(text: '');
-    TextEditingController widthController = TextEditingController(text: '');
-    TextEditingController heightController = TextEditingController(text: '');
 
     Widget aliasInput() {
       return Container(
@@ -54,7 +46,7 @@ class AddPondPage extends StatelessWidget {
               child: Center(
                 child: TextFormField(
                   style: primaryTextStyle,
-                  controller: aliasController,
+                  controller: controller.aliasController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'ex: Alpha',
                     hintStyle: subtitleTextStyle,
@@ -96,7 +88,7 @@ class AddPondPage extends StatelessWidget {
               child: Center(
                 child: TextFormField(
                   style: primaryTextStyle,
-                  controller: locationController,
+                  controller: controller.locationController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'ex: Blok A',
                     hintStyle: subtitleTextStyle,
@@ -138,9 +130,10 @@ class AddPondPage extends StatelessWidget {
               child: Center(
                 child: Obx(() => DropdownButtonFormField<String>(
                       onChanged: (newValue) =>
-                          materialController.setSelected(newValue!),
-                      value: materialController.selected.value,
-                      items: materialController.listMaterial.map((material) {
+                          controller.materialController.setSelected(newValue!),
+                      value: controller.materialController.selected.value,
+                      items: controller.materialController.listMaterial
+                          .map((material) {
                         return DropdownMenuItem<String>(
                           value: material,
                           child: Text(
@@ -188,9 +181,10 @@ class AddPondPage extends StatelessWidget {
               child: Center(
                 child: Obx(() => DropdownButtonFormField<String>(
                       onChanged: (newValue) =>
-                          shapeController.setSelected(newValue!),
-                      value: shapeController.selected.value,
-                      items: shapeController.listMaterial.map((shape) {
+                          controller.shapeController.setSelected(newValue!),
+                      value: controller.shapeController.selected.value,
+                      items:
+                          controller.shapeController.listMaterial.map((shape) {
                         return DropdownMenuItem<String>(
                           value: shape,
                           child: Text(
@@ -242,7 +236,7 @@ class AddPondPage extends StatelessWidget {
                     FilteringTextInputFormatter.digitsOnly
                   ],
                   keyboardType: TextInputType.number,
-                  controller: heightController,
+                  controller: controller.heightController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'ex: 2',
                     hintStyle: subtitleTextStyle,
@@ -288,7 +282,7 @@ class AddPondPage extends StatelessWidget {
                     FilteringTextInputFormatter.digitsOnly
                   ],
                   keyboardType: TextInputType.number,
-                  controller: lengthController,
+                  controller: controller.lengthController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'ex: 2',
                     hintStyle: subtitleTextStyle,
@@ -334,7 +328,7 @@ class AddPondPage extends StatelessWidget {
                     FilteringTextInputFormatter.digitsOnly
                   ],
                   keyboardType: TextInputType.number,
-                  controller: widthController,
+                  controller: controller.widthController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'ex: 2',
                     hintStyle: subtitleTextStyle,
@@ -380,7 +374,7 @@ class AddPondPage extends StatelessWidget {
                     FilteringTextInputFormatter.digitsOnly
                   ],
                   keyboardType: TextInputType.number,
-                  controller: diameterController,
+                  controller: controller.diameterController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'ex: 2',
                     hintStyle: subtitleTextStyle,
@@ -448,7 +442,7 @@ class AddPondPage extends StatelessWidget {
               locationInput(),
               materialInput(),
               shapelInput(),
-              shapeController.selected.value == 'persegi'
+              controller.shapeController.selected.value == 'persegi'
                   ? persegiInput()
                   : bundarInput(),
               heightInput(),
