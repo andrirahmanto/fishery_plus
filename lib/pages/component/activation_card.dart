@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
 
-import '../pond/detail_pond_page.dart';
+import '../pond/detail_Breed_page.dart';
 
 class ActivationCard extends StatelessWidget {
   final String? start;
@@ -19,7 +19,7 @@ class ActivationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailPondPage());
+        Get.to(() => DetailBreedPage());
       },
       child: Container(
         width: double.infinity,
