@@ -1,3 +1,4 @@
+import 'package:fish/models/activation_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fish/theme.dart';
@@ -6,14 +7,9 @@ import 'package:get/get.dart';
 import '../pond/detail_pond_page.dart';
 
 class ActivationCard extends StatelessWidget {
-  final String? start;
-  final num? fish;
-  final String? status;
-  final Color? color;
+  final Activation? activation;
 
-  const ActivationCard(
-      {Key? key, this.start, this.fish, this.status, this.color})
-      : super(key: key);
+  const ActivationCard({Key? key, this.activation}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +39,11 @@ class ActivationCard extends StatelessWidget {
                   height: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    color: this.color!,
+                    color: activation!.getColor(),
                   ),
                   child: Center(
                     child: Text(
-                      this.status!,
+                      activation!.getStatus(),
                       style: blackTextStyle.copyWith(
                         fontSize: 13,
                         fontWeight: heavy,
@@ -70,7 +66,7 @@ class ActivationCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.start!,
+                      activation!.getStringActivationDate(),
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -93,7 +89,7 @@ class ActivationCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.fish.toString() + " Ekor",
+                      "${activation!.fishAmount} Ekor",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,

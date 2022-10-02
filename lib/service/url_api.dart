@@ -7,5 +7,8 @@ class Urls {
 
   // Pond
   static final String ponds = '$baseUrl/ponds';
-  static String pond(String? pondId) => '$baseUrl/pond/$pondId';
+  static String pond(String? pondId) => '$baseUrl/ponds/$pondId';
+
+  // Activation
+  static String activation(String? pondId) => '$baseUrl/ponds/status/$pondId';
 }

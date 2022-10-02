@@ -28,7 +28,7 @@ class DetailPondPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "kolam Alpha",
+                  "kolam ${controller.pond.alias}",
                   style: primaryTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: heavy,
@@ -40,7 +40,7 @@ class DetailPondPage extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  "01-09-2022",
+                  controller.pond.getGmtToNormalDate(),
                   style: secondaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: medium,
@@ -55,12 +55,12 @@ class DetailPondPage extends StatelessWidget {
               height: 40,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: alertColor),
+                border: Border.all(color: controller.pond.getColor()),
                 color: transparentColor,
               ),
               child: Center(
                 child: Text(
-                  "Tidak Aktif",
+                  controller.pond.pondStatusStr!,
                   style: primaryTextStyle.copyWith(
                     fontSize: 14,
                     fontWeight: heavy,
@@ -100,6 +100,31 @@ class DetailPondPage extends StatelessWidget {
       );
     }
 
+    Widget deactivationButton() {
+      return Container(
+        height: 50,
+        width: double.infinity,
+        margin: EdgeInsets.only(
+            top: defaultSpace, right: defaultMargin, left: defaultMargin),
+        child: TextButton(
+          onPressed: () {},
+          style: TextButton.styleFrom(
+            backgroundColor: Colors.amber,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+          child: Text(
+            'Panen',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: medium,
+            ),
+          ),
+        ),
+      );
+    }
+
     Widget detail() {
       return Container(
         width: double.infinity,
@@ -121,7 +146,7 @@ class DetailPondPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Blok A",
+                  controller.pond.location!,
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -142,7 +167,7 @@ class DetailPondPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Persegi",
+                  controller.pond.shape!,
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -165,7 +190,7 @@ class DetailPondPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Terpal",
+                  controller.pond.material!,
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -186,7 +211,9 @@ class DetailPondPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "7 m x 2 m",
+                  controller.pond.shape! == "persegi"
+                      ? "${controller.pond.length}m x ${controller.pond.width}m"
+                      : "${controller.pond.diameter}m\u00B2",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -223,38 +250,50 @@ class DetailPondPage extends StatelessWidget {
           width: double.infinity,
           margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
           child: Column(
-            children: [
-              ActivationCard(
-                start: "01-09-2022",
-                fish: 200,
-                status: "Berjalan",
-                color: alertColor,
+            children: controller.activations
+                .map(
+                  (activation) => ActivationCard(activation: activation),
+                )
+                .toList(),
+          ));
+    }
+
+    Widget emptyListActivation() {
+      return Container(
+          width: double.infinity,
+          margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
+          child: Center(
+            child: Column(children: [
+              SizedBox(height: 35),
+              Image(
+                image: AssetImage("assets/unavailable_icon.png"),
+                width: 100,
+                height: 100,
+                fit: BoxFit.fitWidth,
               ),
-              ActivationCard(
-                start: "15-09-2022",
-                fish: 300,
-                status: "Selseai",
-                color: Colors.green.shade400,
+              SizedBox(height: 20),
+              Text(
+                "Kolam belum pernah\nmemulai musim budidaya",
+                style: primaryTextStyle.copyWith(
+                  fontSize: 14,
+                  fontWeight: bold,
+                ),
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
               ),
-              ActivationCard(
-                start: "15-09-2022",
-                fish: 300,
-                status: "Selseai",
-                color: Colors.green.shade400,
+              SizedBox(height: 10),
+              Text(
+                "Silahkan memulai musim budidaya!",
+                style: secondaryTextStyle.copyWith(
+                  fontSize: 13,
+                  fontWeight: bold,
+                ),
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
               ),
-              ActivationCard(
-                start: "15-09-2022",
-                fish: 300,
-                status: "Selseai",
-                color: Colors.green.shade400,
-              ),
-              ActivationCard(
-                start: "15-09-2022",
-                fish: 300,
-                status: "Selseai",
-                color: Colors.green.shade400,
-              ),
-            ],
+            ]),
           ));
     }
 
@@ -269,10 +308,14 @@ class DetailPondPage extends StatelessWidget {
           body: ListView(
             children: [
               pondStatus(),
-              activationButton(),
+              controller.pond.isActive == true
+                  ? deactivationButton()
+                  : activationButton(),
               detail(),
               activationTitle(),
-              listActivation(),
+              controller.activations.length < 1
+                  ? emptyListActivation()
+                  : listActivation(),
               SizedBox(
                 height: 10,
               )

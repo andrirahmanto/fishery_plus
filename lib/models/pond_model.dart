@@ -8,6 +8,7 @@ enum PondStatus {
 }
 
 class Pond {
+  String? id;
   int? idInt;
   String? alias;
   String? location;
@@ -28,29 +29,32 @@ class Pond {
   PondStatus pondStatus;
   String? pondStatusStr;
 
-  Pond(
-      {this.idInt,
-      this.alias,
-      this.location,
-      this.shape,
-      this.material,
-      this.length,
-      this.width,
-      this.diameter,
-      this.height,
-      this.area,
-      this.volume,
-      this.buildAt,
-      this.imageLink,
-      this.isActive,
-      this.fishAlive,
-      this.lastActivationDate,
-      this.rangeFromLastActivation,
-      this.pondStatusStr,
-      required this.pondStatus});
+  Pond({
+    required this.id,
+    required this.idInt,
+    required this.alias,
+    required this.location,
+    required this.shape,
+    required this.material,
+    required this.isActive,
+    required this.pondStatus,
+    this.length,
+    this.width,
+    this.diameter,
+    this.height,
+    this.area,
+    this.volume,
+    this.buildAt,
+    this.imageLink,
+    this.fishAlive,
+    this.lastActivationDate,
+    this.rangeFromLastActivation,
+    this.pondStatusStr,
+  });
 
   factory Pond.fromJson(Map<String, dynamic> json) {
     return Pond(
+      id: json['_id'],
       idInt: json['id_int'],
       alias: json['alias'],
       location: json['location'],
@@ -111,6 +115,13 @@ class Pond {
     } else {
       return lastActivationDate!;
     }
+  }
+
+  String getGmtToNormalDate() {
+    String stringDate = buildAt!;
+    DateTime dateTime = DateFormat("yyyy-MM-dd hh:mm:ss").parse(stringDate);
+    String newStringDate = DateFormat("dd-MM-yyyy").format(dateTime);
+    return newStringDate;
   }
 }
 

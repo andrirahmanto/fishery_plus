@@ -15,7 +15,7 @@ class PondCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailPondPage());
+        Get.to(() => DetailPondPage(), arguments: pond);
       },
       child: Container(
         width: double.infinity,
