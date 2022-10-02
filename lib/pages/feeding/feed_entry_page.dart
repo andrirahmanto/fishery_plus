@@ -1,12 +1,10 @@
 import 'dart:async';
 
-import 'package:fish/pages/pond/feed_entry_controller.dart';
+import 'package:fish/pages/feeding/feed_entry_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/theme.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
-import 'material_controller.dart';
 
 class FeedEntryPage extends StatelessWidget {
   const FeedEntryPage({Key? key}) : super(key: key);

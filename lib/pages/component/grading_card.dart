@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fish/pages/pond/detail_grading_page.dart';
+import 'package:fish/pages/grading/detail_grading_page.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
 

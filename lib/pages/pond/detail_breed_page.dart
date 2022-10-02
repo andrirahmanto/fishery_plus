@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:fish/pages/pond/breed_controller.dart';
-import 'package:fish/pages/pond/grading_page.dart';
-import 'package:fish/pages/pond/detail_feed_page.dart';
+import 'package:fish/pages/grading/grading_page.dart';
+import 'package:fish/pages/feeding/detail_feed_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
