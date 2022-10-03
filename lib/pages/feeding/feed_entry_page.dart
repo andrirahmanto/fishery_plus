@@ -43,18 +43,16 @@ class FeedEntryPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
-                child: Expanded(
-                  child: TextFormField(
-                    style: primaryTextStyle,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    keyboardType: TextInputType.number,
-                    controller: pondInputController,
-                    decoration: InputDecoration.collapsed(
-                      hintText: 'ex: 2',
-                      hintStyle: subtitleTextStyle,
-                    ),
+                child: TextFormField(
+                  style: primaryTextStyle,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  keyboardType: TextInputType.number,
+                  controller: pondInputController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'ex: 2',
+                    hintStyle: subtitleTextStyle,
                   ),
                 ),
               ),
@@ -91,18 +89,16 @@ class FeedEntryPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
-                child: Expanded(
-                  child: TextFormField(
-                    style: primaryTextStyle,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    keyboardType: TextInputType.number,
-                    controller: feedTypeController,
-                    decoration: InputDecoration.collapsed(
-                      hintText: 'ex: Pelet',
-                      hintStyle: subtitleTextStyle,
-                    ),
+                child: TextFormField(
+                  style: primaryTextStyle,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  keyboardType: TextInputType.number,
+                  controller: feedTypeController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'ex: Pelet',
+                    hintStyle: subtitleTextStyle,
                   ),
                 ),
               ),
@@ -139,18 +135,16 @@ class FeedEntryPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
-                child: Expanded(
-                  child: TextFormField(
-                    style: primaryTextStyle,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    keyboardType: TextInputType.number,
-                    controller: feedDosisController,
-                    decoration: InputDecoration.collapsed(
-                      hintText: 'ex: 20',
-                      hintStyle: subtitleTextStyle,
-                    ),
+                child: TextFormField(
+                  style: primaryTextStyle,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  keyboardType: TextInputType.number,
+                  controller: feedDosisController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'ex: 20',
+                    hintStyle: subtitleTextStyle,
                   ),
                 ),
               ),

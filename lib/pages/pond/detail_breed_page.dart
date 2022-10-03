@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:fish/pages/component/fish_list_card.dart';
 import 'package:fish/pages/pond/breed_controller.dart';
 import 'package:fish/pages/grading/grading_page.dart';
 import 'package:fish/pages/feeding/detail_feed_page.dart';
@@ -25,16 +26,13 @@ class DetailBreedPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "kolam Alpha",
+                  "Kolam Alpha",
                   style: primaryTextStyle.copyWith(
-                    fontSize: 18,
+                    fontSize: 20,
                     fontWeight: heavy,
                   ),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                ),
-                SizedBox(
-                  height: 5,
                 ),
               ],
             ),
@@ -153,157 +151,127 @@ class DetailBreedPage extends StatelessWidget {
       return Container(
         width: double.infinity,
         margin: EdgeInsets.only(
-            top: defaultSpace, right: defaultMargin, left: defaultMargin),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            right: defaultMargin, left: defaultMargin, top: defaultMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Lokasi Kolam",
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 14,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                Text(
-                  "Blok A",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                Text(
-                  " ",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Masa Budidaya",
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 14,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                Text(
-                  "01-09-2022 sampai 02-09-2022",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Berat Ikan terpanen",
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 14,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                Text(
-                  "lele: 100 Kg",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                Text(
-                  "Nila Merah: 100 Kg",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-              ],
+            Text(
+              "Masa Budidaya (Berjalan)",
+              style: primaryTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: medium,
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Jumlah Ikan",
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 14,
-                    fontWeight: medium,
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: primaryColor),
+                color: transparentColor,
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Mulai",
+                            style: primaryTextStyle.copyWith(
+                              fontSize: 14,
+                              fontWeight: bold,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                          Text(
+                            "01-01-2022",
+                            style: secondaryTextStyle.copyWith(
+                              fontSize: 14,
+                              fontWeight: medium,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Masa",
+                            style: primaryTextStyle.copyWith(
+                              fontSize: 14,
+                              fontWeight: bold,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                          Text(
+                            "30 Hari",
+                            style: secondaryTextStyle.copyWith(
+                              fontSize: 14,
+                              fontWeight: medium,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                        ],
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            "Panen",
+                            style: primaryTextStyle.copyWith(
+                              fontSize: 14,
+                              fontWeight: bold,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                          Text(
+                            "01-01-2022",
+                            style: secondaryTextStyle.copyWith(
+                              fontSize: 14,
+                              fontWeight: medium,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                Text(
-                  "Lele: 100 Ekor",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                Text(
-                  "Nila Merah: 100 Ekor",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  "Ikan terpanen",
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 14,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                Text(
-                  "Lele: 100 Ekor",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                Text(
-                  "Nila Merah: 100 Ekor",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                SizedBox(
-                  height: 60,
-                ),
-              ],
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              "Jumlah Ikan (300 Ekor)",
+              style: primaryTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: medium,
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+            FishListCard(),
+            FishListCard(),
+            FishListCard(),
+            SizedBox(
+              height: 10,
             ),
           ],
         ),
@@ -318,11 +286,93 @@ class DetailBreedPage extends StatelessWidget {
         child: Text(
           "Menu Rekapitulasi Budidaya",
           style: primaryTextStyle.copyWith(
-            fontSize: 14,
+            fontSize: 16,
             fontWeight: bold,
           ),
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
+        ),
+      );
+    }
+
+    Widget finishBreed() {
+      return Container(
+        width: double.infinity,
+        margin: EdgeInsets.only(
+            top: defaultSpace, right: defaultMargin, left: defaultMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Panen",
+              style: primaryTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: medium,
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: primaryColor),
+                  color: transparentColor),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        "Total Jumlah Ikan",
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 14,
+                          fontWeight: medium,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                      Text(
+                        "300 Ekor",
+                        style: secondaryTextStyle.copyWith(
+                          fontSize: 13,
+                          fontWeight: medium,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        "Total Berat Ikan",
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 14,
+                          fontWeight: medium,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                      Text(
+                        "300 Kg",
+                        style: secondaryTextStyle.copyWith(
+                          fontSize: 13,
+                          fontWeight: medium,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       );
     }
@@ -348,8 +398,8 @@ class DetailBreedPage extends StatelessWidget {
             children: [
               breedDataRecap(),
               detail(),
+              finishBreed(),
               recapTitle(),
-              // chartRecap(),
               feedButton(),
               gradingButton(),
               deathButton(),

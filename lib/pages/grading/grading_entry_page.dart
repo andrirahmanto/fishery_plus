@@ -50,24 +50,22 @@ class GradingEntryPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
-                child: Expanded(
-                  child: Obx(() => DropdownButtonFormField<String>(
-                        onChanged: (newValue) =>
-                            fishTypeController.setSelected(newValue!),
-                        value: fishTypeController.selected.value,
-                        items: fishTypeController.listFish.map((fish) {
-                          return DropdownMenuItem<String>(
-                            value: fish,
-                            child: Text(
-                              fish,
-                              style: primaryTextStyle,
-                            ),
-                          );
-                        }).toList(),
-                        dropdownColor: backgroundColor5,
-                        decoration: InputDecoration(border: InputBorder.none),
-                      )),
-                ),
+                child: Obx(() => DropdownButtonFormField<String>(
+                      onChanged: (newValue) =>
+                          fishTypeController.setSelected(newValue!),
+                      value: fishTypeController.selected.value,
+                      items: fishTypeController.listFish.map((fish) {
+                        return DropdownMenuItem<String>(
+                          value: fish,
+                          child: Text(
+                            fish,
+                            style: primaryTextStyle,
+                          ),
+                        );
+                      }).toList(),
+                      dropdownColor: backgroundColor5,
+                      decoration: InputDecoration(border: InputBorder.none),
+                    )),
               ),
             ),
           ],
@@ -102,18 +100,16 @@ class GradingEntryPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
-                child: Expanded(
-                  child: TextFormField(
-                    style: primaryTextStyle,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    keyboardType: TextInputType.number,
-                    controller: sampleAmountController,
-                    decoration: InputDecoration.collapsed(
-                      hintText: 'ex: 2',
-                      hintStyle: subtitleTextStyle,
-                    ),
+                child: TextFormField(
+                  style: primaryTextStyle,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  keyboardType: TextInputType.number,
+                  controller: sampleAmountController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'ex: 2',
+                    hintStyle: subtitleTextStyle,
                   ),
                 ),
               ),
@@ -150,18 +146,16 @@ class GradingEntryPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
-                child: Expanded(
-                  child: TextFormField(
-                    style: primaryTextStyle,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    keyboardType: TextInputType.number,
-                    controller: fishWeightController,
-                    decoration: InputDecoration.collapsed(
-                      hintText: 'ex: 20',
-                      hintStyle: subtitleTextStyle,
-                    ),
+                child: TextFormField(
+                  style: primaryTextStyle,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  keyboardType: TextInputType.number,
+                  controller: fishWeightController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'ex: 20',
+                    hintStyle: subtitleTextStyle,
                   ),
                 ),
               ),
@@ -198,18 +192,16 @@ class GradingEntryPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
-                child: Expanded(
-                  child: TextFormField(
-                    style: primaryTextStyle,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    keyboardType: TextInputType.number,
-                    controller: fishLengthAvgController,
-                    decoration: InputDecoration.collapsed(
-                      hintText: 'ex: 20',
-                      hintStyle: subtitleTextStyle,
-                    ),
+                child: TextFormField(
+                  style: primaryTextStyle,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  keyboardType: TextInputType.number,
+                  controller: fishLengthAvgController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'ex: 20',
+                    hintStyle: subtitleTextStyle,
                   ),
                 ),
               ),
@@ -246,18 +238,16 @@ class GradingEntryPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
-                child: Expanded(
-                  child: TextFormField(
-                    style: primaryTextStyle,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    keyboardType: TextInputType.number,
-                    controller: undersizeController,
-                    decoration: InputDecoration.collapsed(
-                      hintText: 'ex: 20',
-                      hintStyle: subtitleTextStyle,
-                    ),
+                child: TextFormField(
+                  style: primaryTextStyle,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  keyboardType: TextInputType.number,
+                  controller: undersizeController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'ex: 20',
+                    hintStyle: subtitleTextStyle,
                   ),
                 ),
               ),
@@ -294,18 +284,16 @@ class GradingEntryPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
-                child: Expanded(
-                  child: TextFormField(
-                    style: primaryTextStyle,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    keyboardType: TextInputType.number,
-                    controller: oversizeController,
-                    decoration: InputDecoration.collapsed(
-                      hintText: 'ex: 20',
-                      hintStyle: subtitleTextStyle,
-                    ),
+                child: TextFormField(
+                  style: primaryTextStyle,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  keyboardType: TextInputType.number,
+                  controller: oversizeController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'ex: 20',
+                    hintStyle: subtitleTextStyle,
                   ),
                 ),
               ),

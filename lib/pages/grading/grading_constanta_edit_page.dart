@@ -41,18 +41,16 @@ class ConstantaGradingPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
-                child: Expanded(
-                  child: TextFormField(
-                    style: primaryTextStyle,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    keyboardType: TextInputType.number,
-                    controller: undersizeController,
-                    decoration: InputDecoration.collapsed(
-                      hintText: 'ex: 80',
-                      hintStyle: subtitleTextStyle,
-                    ),
+                child: TextFormField(
+                  style: primaryTextStyle,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  keyboardType: TextInputType.number,
+                  controller: undersizeController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'ex: 80',
+                    hintStyle: subtitleTextStyle,
                   ),
                 ),
               ),
@@ -89,18 +87,16 @@ class ConstantaGradingPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Center(
-                child: Expanded(
-                  child: TextFormField(
-                    style: primaryTextStyle,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    keyboardType: TextInputType.number,
-                    controller: oversizeController,
-                    decoration: InputDecoration.collapsed(
-                      hintText: 'ex: 100',
-                      hintStyle: subtitleTextStyle,
-                    ),
+                child: TextFormField(
+                  style: primaryTextStyle,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  keyboardType: TextInputType.number,
+                  controller: oversizeController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'ex: 100',
+                    hintStyle: subtitleTextStyle,
                   ),
                 ),
               ),

@@ -27,7 +27,7 @@ class ActivationService {
 
       return activations;
     } else {
-      throw Exception('Gagal Get Ponds!');
+      throw Exception('Gagal Get Activation!');
     }
   }
 }
