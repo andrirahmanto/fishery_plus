@@ -1,23 +1,19 @@
 import 'dart:async';
 
-import 'package:fish/pages/component/activation_card.dart';
-import 'package:fish/pages/component/pond_card.dart';
-import 'package:fish/pages/pond/activation_breed_page.dart';
-import 'package:fish/pages/pond/add_pond_page.dart';
-import 'package:fish/pages/pond/detail_pond_controller.dart';
-import 'package:fish/pages/pond/pond_controller.dart';
+import 'package:fish/pages/component/feed_daily_card.dart';
+import 'package:fish/pages/feeding/feed_weekly_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
 
-class DetailPondPage extends StatelessWidget {
-  const DetailPondPage({Key? key}) : super(key: key);
+class DetailFeedWeeklyPage extends StatelessWidget {
+  const DetailFeedWeeklyPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final DetailPondController controller = Get.put(DetailPondController());
+    final FeedWeeklyController controller = Get.put(FeedWeeklyController());
 
-    Widget pondStatus() {
+    Widget feedWeeklyDataRecap() {
       return Container(
         margin: EdgeInsets.only(
             top: defaultSpace, right: defaultMargin, left: defaultMargin),
@@ -29,7 +25,7 @@ class DetailPondPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "kolam ${controller.pond.alias}",
+                  "kolam Alpha",
                   style: primaryTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: heavy,
@@ -37,97 +33,58 @@ class DetailPondPage extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
-                SizedBox(
-                  height: 5,
-                ),
                 Text(
-                  controller.pond.getGmtToNormalDate(),
+                  "Bulan Ke-1",
                   style: secondaryTextStyle.copyWith(
-                    fontSize: 16,
+                    fontSize: 13,
                     fontWeight: medium,
                   ),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
-              ],
-            ),
-            Container(
-              width: 120,
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: controller.pond.getColor()),
-                color: transparentColor,
-              ),
-              child: Center(
-                child: Text(
-                  controller.pond.pondStatusStr!,
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 14,
-                    fontWeight: heavy,
+                Text(
+                  "Minggu Ke-1",
+                  style: secondaryTextStyle.copyWith(
+                    fontSize: 13,
+                    fontWeight: medium,
                   ),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
-              ),
-            )
+                SizedBox(
+                  height: 5,
+                ),
+              ],
+            ),
           ],
         ),
       );
     }
 
-    Widget activationButton() {
-      return Container(
-        height: 50,
-        width: double.infinity,
-        margin: EdgeInsets.only(
-            top: defaultSpace, right: defaultMargin, left: defaultMargin),
-        child: TextButton(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => ActivationBreedPage()));
-          },
-          style: TextButton.styleFrom(
-            backgroundColor: Colors.green.shade400,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-          child: Text(
-            'Start Budidaya',
-            style: primaryTextStyle.copyWith(
-              fontSize: 16,
-              fontWeight: medium,
-            ),
-          ),
-        ),
-      );
-    }
-
-    Widget deactivationButton() {
-      return Container(
-        height: 50,
-        width: double.infinity,
-        margin: EdgeInsets.only(
-            top: defaultSpace, right: defaultMargin, left: defaultMargin),
-        child: TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-            backgroundColor: Colors.amber,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-          ),
-          child: Text(
-            'Panen',
-            style: blackTextStyle.copyWith(
-              fontSize: 16,
-              fontWeight: medium,
-            ),
-          ),
-        ),
-      );
-    }
+    // Widget entryPakanButton() {
+    //   return Container(
+    //     height: 50,
+    //     width: double.infinity,
+    //     margin: EdgeInsets.only(
+    //         top: defaultSpace, right: defaultMargin, left: defaultMargin),
+    //     child: TextButton(
+    //       onPressed: () {},
+    //       style: TextButton.styleFrom(
+    //         backgroundColor: Colors.green.shade400,
+    //         shape: RoundedRectangleBorder(
+    //           borderRadius: BorderRadius.circular(12),
+    //         ),
+    //       ),
+    //       child: Text(
+    //         'Entry Pakan',
+    //         style: primaryTextStyle.copyWith(
+    //           fontSize: 16,
+    //           fontWeight: medium,
+    //         ),
+    //       ),
+    //     ),
+    //   );
+    // }
 
     Widget detail() {
       return Container(
@@ -150,7 +107,16 @@ class DetailPondPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  controller.pond.location!,
+                  "Blok A",
+                  style: secondaryTextStyle.copyWith(
+                    fontSize: 13,
+                    fontWeight: medium,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+                Text(
+                  " ",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -162,7 +128,7 @@ class DetailPondPage extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  "Bentuk Kolam",
+                  "Total Pemberian Pakan",
                   style: primaryTextStyle.copyWith(
                     fontSize: 14,
                     fontWeight: medium,
@@ -171,7 +137,7 @@ class DetailPondPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  controller.pond.shape!,
+                  "30 Kali",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -185,7 +151,7 @@ class DetailPondPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Material Kolam",
+                  "Jumlah Ikan",
                   style: primaryTextStyle.copyWith(
                     fontSize: 14,
                     fontWeight: medium,
@@ -194,7 +160,16 @@ class DetailPondPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  controller.pond.material!,
+                  "Lele: 100 Ekor",
+                  style: secondaryTextStyle.copyWith(
+                    fontSize: 13,
+                    fontWeight: medium,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+                Text(
+                  "Nila Merah: 100 Ekor",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -206,7 +181,7 @@ class DetailPondPage extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  "Ukuran Kolam",
+                  "Total Pakan",
                   style: primaryTextStyle.copyWith(
                     fontSize: 14,
                     fontWeight: medium,
@@ -215,9 +190,7 @@ class DetailPondPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  controller.pond.shape! == "persegi"
-                      ? "${controller.pond.length}m x ${controller.pond.width}m"
-                      : "${controller.pond.diameter}m\u00B2",
+                  "30 Kg",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -232,13 +205,13 @@ class DetailPondPage extends StatelessWidget {
       );
     }
 
-    Widget activationTitle() {
+    Widget recapTitle() {
       return Container(
         width: double.infinity,
         margin: EdgeInsets.only(
             top: defaultSpace * 2, right: defaultMargin, left: defaultMargin),
         child: Text(
-          "List Musim Budidaya",
+          "Rekapitulasi Pakan Harian",
           style: primaryTextStyle.copyWith(
             fontSize: 14,
             fontWeight: bold,
@@ -249,55 +222,43 @@ class DetailPondPage extends StatelessWidget {
       );
     }
 
-    Widget listActivation() {
+    // Widget chartRecap() {
+    //   return Container(
+    //     width: double.infinity,
+    //     margin: EdgeInsets.only(
+    //         top: defaultSpace * 2, right: defaultMargin, left: defaultMargin),
+    //     // decoration: BoxDecoration(
+    //     //     image: DecorationImage(image: AssetImage('assets/feedChart.png'))),
+    //   );
+    // }
+
+    Widget listDailyFeed() {
       return Container(
           width: double.infinity,
           margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
           child: Column(
-            children: controller.activations
-                .map(
-                  (activation) => ActivationCard(activation: activation),
-                )
-                .toList(),
-          ));
-    }
-
-    Widget emptyListActivation() {
-      return Container(
-          width: double.infinity,
-          margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
-          child: Center(
-            child: Column(children: [
-              SizedBox(height: 35),
-              Image(
-                image: AssetImage("assets/unavailable_icon.png"),
-                width: 100,
-                height: 100,
-                fit: BoxFit.fitWidth,
+            children: [
+              FeedDailyCard(
+                day: "Senin",
+                feed: 200,
+                feedcount: 30,
               ),
-              SizedBox(height: 20),
-              Text(
-                "Kolam belum pernah\nmemulai musim budidaya",
-                style: primaryTextStyle.copyWith(
-                  fontSize: 14,
-                  fontWeight: bold,
-                ),
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
+              FeedDailyCard(
+                day: "Selasa",
+                feed: 200,
+                feedcount: 30,
               ),
-              SizedBox(height: 10),
-              Text(
-                "Silahkan memulai musim budidaya!",
-                style: secondaryTextStyle.copyWith(
-                  fontSize: 13,
-                  fontWeight: bold,
-                ),
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
+              FeedDailyCard(
+                day: "Rabu",
+                feed: 200,
+                feedcount: 30,
               ),
-            ]),
+              FeedDailyCard(
+                day: "Kamis",
+                feed: 200,
+                feedcount: 30,
+              ),
+            ],
           ));
     }
 
@@ -306,20 +267,16 @@ class DetailPondPage extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: backgroundColor2,
-            title: const Text("Detail Kolam"),
+            title: const Text("Detail Pakan Mingguan"),
           ),
           backgroundColor: backgroundColor1,
           body: ListView(
             children: [
-              pondStatus(),
-              controller.pond.isActive == true
-                  ? deactivationButton()
-                  : activationButton(),
+              feedWeeklyDataRecap(),
               detail(),
-              activationTitle(),
-              controller.activations.length < 1
-                  ? emptyListActivation()
-                  : listActivation(),
+              recapTitle(),
+              // chartRecap(),
+              listDailyFeed(),
               SizedBox(
                 height: 10,
               )

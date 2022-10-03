@@ -1,21 +1,25 @@
-import 'package:fish/models/activation_model.dart';
 import 'package:flutter/material.dart';
-
+import 'package:fish/pages/feeding/detail_feed_daily_page.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
 
-import '../pond/detail_Breed_page.dart';
+class FeedDailyCard extends StatelessWidget {
+  final String? day;
+  final num? feed;
+  final num? feedcount;
 
-class ActivationCard extends StatelessWidget {
-  final Activation? activation;
-
-  const ActivationCard({Key? key, this.activation}) : super(key: key);
+  const FeedDailyCard({
+    Key? key,
+    this.day,
+    this.feed,
+    this.feedcount,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailBreedPage());
+        Get.to(() => DetailFeedDailyPage());
       },
       child: Container(
         width: double.infinity,
@@ -34,30 +38,11 @@ class ActivationCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 90,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: activation!.getColor(),
-                  ),
-                  child: Center(
-                    child: Text(
-                      activation!.getStatus(),
-                      style: blackTextStyle.copyWith(
-                        fontSize: 13,
-                        fontWeight: heavy,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ),
-                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Mulai Pada",
+                      "Hari",
                       style: primaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: bold,
@@ -66,7 +51,30 @@ class ActivationCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      activation!.getStringActivationDate(),
+                      this.day!,
+                      style: secondaryTextStyle.copyWith(
+                        fontSize: 14,
+                        fontWeight: medium,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Pakan",
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 14,
+                        fontWeight: bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    Text(
+                      this.feed.toString() + " Kg",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -89,7 +97,7 @@ class ActivationCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      "${activation!.fishAmount} Ekor",
+                      this.feedcount.toString() + " Kali",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,

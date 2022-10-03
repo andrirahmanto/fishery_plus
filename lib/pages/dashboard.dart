@@ -1,6 +1,6 @@
 import 'package:fish/pages/dashboard_controller.dart';
 import 'package:fish/pages/fish/fish_page.dart';
-import 'package:fish/pages/grading/grading_page.dart';
+import 'package:fish/pages/grading/grading.dart';
 import 'package:fish/pages/home/home_page.dart';
 import 'package:fish/pages/pond/pond_page.dart';
 import 'package:flutter/cupertino.dart';

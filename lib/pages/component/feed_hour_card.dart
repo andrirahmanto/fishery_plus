@@ -1,22 +1,24 @@
-import 'package:fish/models/activation_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
 
-import '../pond/detail_Breed_page.dart';
+class FeedHourCard extends StatelessWidget {
+  final String? date;
+  final String? time;
+  final num? feed;
 
-class ActivationCard extends StatelessWidget {
-  final Activation? activation;
-
-  const ActivationCard({Key? key, this.activation}) : super(key: key);
+  const FeedHourCard({
+    Key? key,
+    this.date,
+    this.time,
+    this.feed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Get.to(() => DetailBreedPage());
-      },
+      onTap: () {},
       child: Container(
         width: double.infinity,
         margin: EdgeInsets.only(
@@ -34,30 +36,11 @@ class ActivationCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 90,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: activation!.getColor(),
-                  ),
-                  child: Center(
-                    child: Text(
-                      activation!.getStatus(),
-                      style: blackTextStyle.copyWith(
-                        fontSize: 13,
-                        fontWeight: heavy,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ),
-                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Mulai Pada",
+                      "Tanggal",
                       style: primaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: bold,
@@ -66,7 +49,7 @@ class ActivationCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      activation!.getStringActivationDate(),
+                      this.date!,
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -80,7 +63,7 @@ class ActivationCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Ikan",
+                      "Waktu",
                       style: primaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: bold,
@@ -89,7 +72,30 @@ class ActivationCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      "${activation!.fishAmount} Ekor",
+                      this.time!,
+                      style: secondaryTextStyle.copyWith(
+                        fontSize: 14,
+                        fontWeight: medium,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Pakan",
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 14,
+                        fontWeight: bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    Text(
+                      this.feed.toString() + " Kg",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,

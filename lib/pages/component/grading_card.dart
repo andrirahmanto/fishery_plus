@@ -1,21 +1,25 @@
-import 'package:fish/models/activation_model.dart';
 import 'package:flutter/material.dart';
-
+import 'package:fish/pages/grading/detail_grading_page.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
 
-import '../pond/detail_Breed_page.dart';
+class GradingCard extends StatelessWidget {
+  final String? date;
+  final num? weightAvg;
+  final num? sample;
 
-class ActivationCard extends StatelessWidget {
-  final Activation? activation;
-
-  const ActivationCard({Key? key, this.activation}) : super(key: key);
+  const GradingCard({
+    Key? key,
+    this.date,
+    this.weightAvg,
+    this.sample,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailBreedPage());
+        Get.to(() => DetailGradingPage());
       },
       child: Container(
         width: double.infinity,
@@ -34,30 +38,11 @@ class ActivationCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 90,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: activation!.getColor(),
-                  ),
-                  child: Center(
-                    child: Text(
-                      activation!.getStatus(),
-                      style: blackTextStyle.copyWith(
-                        fontSize: 13,
-                        fontWeight: heavy,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ),
-                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Mulai Pada",
+                      "Tanggal",
                       style: primaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: bold,
@@ -66,7 +51,7 @@ class ActivationCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      activation!.getStringActivationDate(),
+                      this.date!,
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -80,7 +65,7 @@ class ActivationCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Ikan",
+                      "Bobot Rata Rata",
                       style: primaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: bold,
@@ -89,7 +74,30 @@ class ActivationCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      "${activation!.fishAmount} Ekor",
+                      this.weightAvg.toString() + ' gram',
+                      style: secondaryTextStyle.copyWith(
+                        fontSize: 14,
+                        fontWeight: medium,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Jumlah Sample",
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 14,
+                        fontWeight: bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    Text(
+                      this.sample.toString() + "/100 Ekor",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
