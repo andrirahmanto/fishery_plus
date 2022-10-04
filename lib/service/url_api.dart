@@ -11,4 +11,14 @@ class Urls {
 
   // Activation
   static String activation(String? pondId) => '$baseUrl/ponds/status/$pondId';
+
+  // Feed History
+  static String feedHistoryMonthly(String? activationId) =>
+      '$baseUrl/feedhistorys/month/$activationId';
+  static String feedHistoryWeekly(String? activationId, month) =>
+      '$baseUrl/feedhistorys/week/$activationId/$month';
+  static String feedHistoryDaily(String? activationId, week) =>
+      '$baseUrl/feedhistorys/day/$activationId/$week';
+  static String feedHistory(String? activationId, day) =>
+      '$baseUrl/feedhistorys/hour/$activationId/$day';
 }

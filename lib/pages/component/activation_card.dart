@@ -1,4 +1,5 @@
 import 'package:fish/models/activation_model.dart';
+import 'package:fish/models/pond_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fish/theme.dart';
@@ -8,14 +9,17 @@ import '../pond/detail_Breed_page.dart';
 
 class ActivationCard extends StatelessWidget {
   final Activation? activation;
+  final Pond? pond;
 
-  const ActivationCard({Key? key, this.activation}) : super(key: key);
+  const ActivationCard({Key? key, this.activation, this.pond})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailBreedPage(), arguments: activation);
+        Get.to(() => DetailBreedPage(),
+            arguments: {"activation": activation, "pond": pond});
       },
       child: Container(
         width: double.infinity,

@@ -26,7 +26,7 @@ class DetailFeedPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "kolam Alpha",
+                  "kolam ${controller.pond.alias}",
                   style: primaryTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: heavy,
@@ -229,28 +229,14 @@ class DetailFeedPage extends StatelessWidget {
           width: double.infinity,
           margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
           child: Column(
-            children: [
-              FeedMonthCard(
-                month: "1",
-                feed: 200,
-                feedcount: 30,
-              ),
-              FeedMonthCard(
-                month: "2",
-                feed: 200,
-                feedcount: 30,
-              ),
-              FeedMonthCard(
-                month: "3",
-                feed: 200,
-                feedcount: 30,
-              ),
-              FeedMonthCard(
-                month: "4",
-                feed: 200,
-                feedcount: 30,
-              ),
-            ],
+            children: controller.list_feedHistoryMonthly
+                .map(
+                  (feedHistoryMonthly) => FeedMonthCard(
+                      activation: controller.activation,
+                      pond: controller.pond,
+                      feedHistoryMonthly: feedHistoryMonthly),
+                )
+                .toList(),
           ));
     }
 
@@ -265,7 +251,7 @@ class DetailFeedPage extends StatelessWidget {
           body: ListView(
             children: [
               feedDataRecap(),
-              detail(),
+              // detail(),
               entryPakanButton(),
               recapTitle(),
               // chartRecap(),

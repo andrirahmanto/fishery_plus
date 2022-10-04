@@ -1,3 +1,6 @@
+import 'package:fish/models/FeedHistoryMonthly.dart';
+import 'package:fish/models/activation_model.dart';
+import 'package:fish/models/pond_model.dart';
 import 'package:fish/pages/feeding/detail_feed_monthly_page.dart';
 import 'package:flutter/material.dart';
 
@@ -5,15 +8,15 @@ import 'package:fish/theme.dart';
 import 'package:get/get.dart';
 
 class FeedMonthCard extends StatelessWidget {
-  final String? month;
-  final num? feed;
-  final num? feedcount;
+  final Activation? activation;
+  final Pond? pond;
+  final FeedHistoryMonthly? feedHistoryMonthly;
 
   const FeedMonthCard({
     Key? key,
-    this.month,
-    this.feed,
-    this.feedcount,
+    this.activation,
+    this.pond,
+    this.feedHistoryMonthly,
   }) : super(key: key);
 
   @override
@@ -43,7 +46,7 @@ class FeedMonthCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Bulan Ke-",
+                      "Bulan",
                       style: primaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: bold,
@@ -52,7 +55,7 @@ class FeedMonthCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.month!,
+                      feedHistoryMonthly!.getMonthName(),
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -75,7 +78,7 @@ class FeedMonthCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.feed.toString() + " Kg",
+                      "${feedHistoryMonthly!.totalFeedWeight} Kg",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -98,7 +101,7 @@ class FeedMonthCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.feedcount.toString() + " Kali",
+                      "${feedHistoryMonthly!.totalFeed} Kali",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,

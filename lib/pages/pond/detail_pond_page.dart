@@ -256,7 +256,8 @@ class DetailPondPage extends StatelessWidget {
           child: Column(
             children: controller.activations
                 .map(
-                  (activation) => ActivationCard(activation: activation),
+                  (activation) => ActivationCard(
+                      activation: activation, pond: controller.pond),
                 )
                 .toList(),
           ));

@@ -5,6 +5,7 @@ import 'package:fish/pages/component/fish_list_card.dart';
 import 'package:fish/pages/pond/breed_controller.dart';
 import 'package:fish/pages/grading/grading_page.dart';
 import 'package:fish/pages/feeding/detail_feed_page.dart';
+import 'package:fish/pages/pond/detail_pond_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,8 @@ class DetailBreedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BreedController controller = Get.put(BreedController());
+    // final DetailPondController detailPondController =
+    //     Get.put(DetailPondController());
 
     Widget breedDataRecap() {
       return Container(
@@ -28,7 +31,7 @@ class DetailBreedPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Kolam Alpha",
+                  "Kolam ${controller.pond.alias}",
                   style: primaryTextStyle.copyWith(
                     fontSize: 20,
                     fontWeight: heavy,
@@ -76,8 +79,10 @@ class DetailBreedPage extends StatelessWidget {
             top: defaultSpace, right: defaultMargin, left: defaultMargin),
         child: TextButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => DetailFeedPage()));
+            Get.to(() => DetailFeedPage(), arguments: {
+              "pond": controller.pond,
+              "activation": controller.activation,
+            });
           },
           style: TextButton.styleFrom(
             backgroundColor: Colors.green.shade400,
