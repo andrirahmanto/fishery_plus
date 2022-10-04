@@ -16,4 +16,12 @@ class Fish {
       amount: json['fish_amount'],
     );
   }
+
+  static List<Fish> fromJsonList(List<dynamic> list) {
+    List<Fish> fishes = [];
+    for (var item in list) {
+      fishes.add(Fish.fromJson(item));
+    }
+    return fishes;
+  }
 }

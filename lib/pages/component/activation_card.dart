@@ -15,7 +15,7 @@ class ActivationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailBreedPage());
+        Get.to(() => DetailBreedPage(), arguments: activation);
       },
       child: Container(
         width: double.infinity,

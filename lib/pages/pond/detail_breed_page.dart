@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'package:fish/models/fish_model.dart';
+import 'package:fish/pages/component/fish_card.dart';
 import 'package:fish/pages/component/fish_list_card.dart';
 import 'package:fish/pages/pond/breed_controller.dart';
 import 'package:fish/pages/grading/grading_page.dart';
@@ -156,7 +158,7 @@ class DetailBreedPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Masa Budidaya (Berjalan)",
+              "Masa Budidaya (${controller.activation.getStatus()})",
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: medium,
@@ -181,74 +183,80 @@ class DetailBreedPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Mulai",
-                            style: primaryTextStyle.copyWith(
-                              fontSize: 14,
-                              fontWeight: bold,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Mulai",
+                              style: primaryTextStyle.copyWith(
+                                fontSize: 14,
+                                fontWeight: bold,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                          Text(
-                            "01-01-2022",
-                            style: secondaryTextStyle.copyWith(
-                              fontSize: 14,
-                              fontWeight: medium,
+                            Text(
+                              controller.activation.getStringActivationDate(),
+                              style: secondaryTextStyle.copyWith(
+                                fontSize: 14,
+                                fontWeight: medium,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Masa",
-                            style: primaryTextStyle.copyWith(
-                              fontSize: 14,
-                              fontWeight: bold,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Masa",
+                              style: primaryTextStyle.copyWith(
+                                fontSize: 14,
+                                fontWeight: bold,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                          Text(
-                            "30 Hari",
-                            style: secondaryTextStyle.copyWith(
-                              fontSize: 14,
-                              fontWeight: medium,
+                            Text(
+                              "${controller.activation.getRangeActivation().toString()} Hari",
+                              style: secondaryTextStyle.copyWith(
+                                fontSize: 14,
+                                fontWeight: medium,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            "Panen",
-                            style: primaryTextStyle.copyWith(
-                              fontSize: 14,
-                              fontWeight: bold,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Panen",
+                              style: primaryTextStyle.copyWith(
+                                fontSize: 14,
+                                fontWeight: bold,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                          Text(
-                            "01-01-2022",
-                            style: secondaryTextStyle.copyWith(
-                              fontSize: 14,
-                              fontWeight: medium,
+                            Text(
+                              controller.activation.getStringDeactivationDate(),
+                              style: secondaryTextStyle.copyWith(
+                                fontSize: 14,
+                                fontWeight: medium,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -259,7 +267,7 @@ class DetailBreedPage extends StatelessWidget {
               height: 30,
             ),
             Text(
-              "Jumlah Ikan (300 Ekor)",
+              "Jumlah Ikan (${controller.activation.fishAmount.toString()} Ekor)",
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: medium,
@@ -267,9 +275,13 @@ class DetailBreedPage extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
-            FishListCard(),
-            FishListCard(),
-            FishListCard(),
+            Column(
+              children: controller.activation.fishes!
+                  .map(
+                    (fish) => FishListCard(fish: fish),
+                  )
+                  .toList(),
+            ),
             SizedBox(
               height: 10,
             ),
@@ -337,7 +349,7 @@ class DetailBreedPage extends StatelessWidget {
                         maxLines: 1,
                       ),
                       Text(
-                        "300 Ekor",
+                        "${controller.activation.totalFishHarvested.toString()} Ekor",
                         style: secondaryTextStyle.copyWith(
                           fontSize: 13,
                           fontWeight: medium,
@@ -359,7 +371,7 @@ class DetailBreedPage extends StatelessWidget {
                         maxLines: 1,
                       ),
                       Text(
-                        "300 Kg",
+                        "${controller.activation.totalWeightHarvested.toString()} Kg",
                         style: secondaryTextStyle.copyWith(
                           fontSize: 13,
                           fontWeight: medium,
@@ -398,7 +410,9 @@ class DetailBreedPage extends StatelessWidget {
             children: [
               breedDataRecap(),
               detail(),
-              finishBreed(),
+              controller.activation.isFinish == false
+                  ? Container()
+                  : finishBreed(),
               recapTitle(),
               feedButton(),
               gradingButton(),

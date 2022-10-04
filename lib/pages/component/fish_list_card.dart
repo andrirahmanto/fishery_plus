@@ -1,4 +1,5 @@
 import 'package:fish/models/activation_model.dart';
+import 'package:fish/models/fish_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fish/theme.dart';
@@ -7,11 +8,9 @@ import 'package:get/get.dart';
 import '../pond/detail_Breed_page.dart';
 
 class FishListCard extends StatelessWidget {
-  // final Activation? activation;
+  final Fish fish;
 
-  const FishListCard({
-    Key? key,
-  }) : super(key: key);
+  const FishListCard({Key? key, required this.fish}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class FishListCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "Lele",
+                fish.type!,
                 style: primaryTextStyle.copyWith(
                   fontSize: 16,
                   fontWeight: medium,
@@ -42,7 +41,7 @@ class FishListCard extends StatelessWidget {
                 maxLines: 1,
               ),
               Text(
-                "30 Ekor",
+                "${fish.amount.toString()} Ekor",
                 style: secondaryTextStyle.copyWith(
                   fontSize: 14,
                   fontWeight: bold,
