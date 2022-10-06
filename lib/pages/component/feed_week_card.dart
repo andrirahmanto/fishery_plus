@@ -1,3 +1,7 @@
+import 'package:fish/models/FeedHistoryMonthly.dart';
+import 'package:fish/models/FeedHistoryWeekly.dart';
+import 'package:fish/models/activation_model.dart';
+import 'package:fish/models/pond_model.dart';
 import 'package:fish/pages/feeding/detail_feed_weekly_page.dart';
 import 'package:flutter/material.dart';
 
@@ -5,15 +9,17 @@ import 'package:fish/theme.dart';
 import 'package:get/get.dart';
 
 class FeedWeeklyCard extends StatelessWidget {
-  final String? week;
-  final num? feed;
-  final num? feedcount;
+  final Activation? activation;
+  final Pond? pond;
+  final FeedHistoryMonthly? feedHistoryMonthly;
+  final FeedHistoryWeekly? feedHistoryWeekly;
 
   const FeedWeeklyCard({
     Key? key,
-    this.week,
-    this.feed,
-    this.feedcount,
+    this.activation,
+    this.pond,
+    this.feedHistoryMonthly,
+    this.feedHistoryWeekly,
   }) : super(key: key);
 
   @override
@@ -52,7 +58,7 @@ class FeedWeeklyCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.week!,
+                      feedHistoryWeekly!.week.toString(),
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -75,7 +81,7 @@ class FeedWeeklyCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.feed.toString() + " Kg",
+                      "${feedHistoryWeekly!.totalFeedWeight} Kg",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -98,7 +104,7 @@ class FeedWeeklyCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.feedcount.toString() + " Kali",
+                      "${feedHistoryWeekly!.totalFeed} Kali",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,

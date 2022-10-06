@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ffi';
 import 'package:fish/models/FeedHistoryMonthly.dart';
+import 'package:fish/models/FeedHistoryWeekly.dart';
 import 'package:fish/models/activation_model.dart';
 import 'package:fish/models/pond_model.dart';
 import 'package:fish/models/statistic_model.dart';
@@ -23,6 +24,26 @@ class FeedHistoryService {
       List<FeedHistoryMonthly> feedHistoryMonthly =
           FeedHistoryMonthly.fromJsonList(data);
       return feedHistoryMonthly;
+    } else {
+      throw Exception('Gagal Get Activation!');
+    }
+  }
+
+  Future<List<FeedHistoryWeekly>> getWeeklyRecap(
+      {required String activation_id, required String month}) async {
+    var url = Uri.parse(Urls.feedHistoryWeekly(activation_id, month));
+    print(url);
+    var headers = {'Content-Type': 'application/json'};
+
+    var response = await http.get(url, headers: headers);
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      List<FeedHistoryWeekly> feedHistoryWeekly =
+          FeedHistoryWeekly.fromJsonList(data);
+      return feedHistoryWeekly;
     } else {
       throw Exception('Gagal Get Activation!');
     }

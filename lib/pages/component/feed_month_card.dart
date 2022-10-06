@@ -23,7 +23,11 @@ class FeedMonthCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailFeedMonthlyPage());
+        Get.to(() => DetailFeedMonthlyPage(), arguments: {
+          "activation": activation,
+          "pond": pond,
+          "feedHistoryMonthly": feedHistoryMonthly,
+        });
       },
       child: Container(
         width: double.infinity,

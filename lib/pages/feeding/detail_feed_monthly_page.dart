@@ -25,7 +25,7 @@ class DetailFeedMonthlyPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "kolam Alpha",
+                  "kolam ${controller.pond.alias}",
                   style: primaryTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: heavy,
@@ -34,7 +34,7 @@ class DetailFeedMonthlyPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Bulan Ke-1",
+                  "Bulan ${controller.feedHistoryMonthly.getMonthNameFull()}",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -228,28 +228,15 @@ class DetailFeedMonthlyPage extends StatelessWidget {
           width: double.infinity,
           margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
           child: Column(
-            children: [
-              FeedWeeklyCard(
-                week: "1",
-                feed: 200,
-                feedcount: 30,
-              ),
-              FeedWeeklyCard(
-                week: "2",
-                feed: 200,
-                feedcount: 30,
-              ),
-              FeedWeeklyCard(
-                week: "3",
-                feed: 200,
-                feedcount: 30,
-              ),
-              FeedWeeklyCard(
-                week: "4",
-                feed: 200,
-                feedcount: 30,
-              ),
-            ],
+            children: controller.list_feedHistoryWeekly
+                .map(
+                  (feedHistoryWeekly) => FeedWeeklyCard(
+                      activation: controller.activation,
+                      pond: controller.pond,
+                      feedHistoryMonthly: controller.feedHistoryMonthly,
+                      feedHistoryWeekly: feedHistoryWeekly),
+                )
+                .toList(),
           ));
     }
 
@@ -264,7 +251,7 @@ class DetailFeedMonthlyPage extends StatelessWidget {
           body: ListView(
             children: [
               feedMonthlyDataRecap(),
-              detail(),
+              // detail(),
               recapTitle(),
               // chartRecap(),
               listWeeklyFeed(),

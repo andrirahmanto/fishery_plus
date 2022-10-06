@@ -28,7 +28,8 @@ class FeedHistoryMonthly {
     return fishes;
   }
 
-  String getMonthName() {
-    return DateFormat('MMM').format(date!);
-  }
+  String getMonthName() => DateFormat('MMM').format(date!);
+  String getMonthNameFull() => DateFormat('MMMM').format(date!);
+
+  String getMonth() => DateFormat('yyyy-MM').format(date!);
 }
