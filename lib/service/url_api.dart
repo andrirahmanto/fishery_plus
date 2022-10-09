@@ -19,6 +19,6 @@ class Urls {
       '$baseUrl/feedhistorys/week/$activationId/$month';
   static String feedHistoryDaily(String? activationId, week) =>
       '$baseUrl/feedhistorys/day/$activationId/$week';
-  static String feedHistory(String? activationId, day) =>
-      '$baseUrl/feedhistorys/hour/$activationId/$day';
+  static String feedHistory(String? activationId, date) =>
+      '$baseUrl/feedhistorys/hour/$activationId/$date';
 }

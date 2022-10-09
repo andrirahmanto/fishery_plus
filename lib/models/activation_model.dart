@@ -11,6 +11,8 @@ class Activation {
   DateTime? deactivationAt;
   num? totalFishHarvested;
   num? totalWeightHarvested;
+  num? consOver;
+  num? consUnder;
   int? fishAmount;
   List<Fish>? fishes;
 
@@ -23,6 +25,8 @@ class Activation {
     this.deactivationAt,
     this.totalFishHarvested,
     this.totalWeightHarvested,
+    this.consOver,
+    this.consUnder,
     this.fishAmount,
     this.fishes,
   });
@@ -41,6 +45,8 @@ class Activation {
             : null,
         totalFishHarvested: json['total_fish_harvested'],
         totalWeightHarvested: json['total_weight_harvested'],
+        consOver: json['constanta_oversize'],
+        consUnder: json['constanta_undersize'],
         fishAmount: json['total_fish'],
         fishes: Fish.fromJsonList(json['fish']));
   }

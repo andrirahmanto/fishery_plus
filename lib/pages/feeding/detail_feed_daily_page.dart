@@ -25,7 +25,7 @@ class DetailFeedDailyPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "kolam Alpha",
+                  "kolam ${controller.pond.alias}",
                   style: primaryTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: heavy,
@@ -34,7 +34,7 @@ class DetailFeedDailyPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Bulan Ke-1",
+                  "Bulan ${controller.feedHistoryMonthly.getMonthNameFull()}",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -43,7 +43,7 @@ class DetailFeedDailyPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Minggu Ke-1",
+                  "Minggu Ke-${controller.feedHistoryWeekly.week}",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -52,7 +52,7 @@ class DetailFeedDailyPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Hari Senin",
+                  "Hari ${controller.feedHistoryDaily.getDayName()}",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -246,28 +246,18 @@ class DetailFeedDailyPage extends StatelessWidget {
           width: double.infinity,
           margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
           child: Column(
-            children: [
-              FeedHourCard(
-                date: "13-09-2022",
-                feed: 200,
-                time: "16:12",
-              ),
-              FeedHourCard(
-                date: "13-09-2022",
-                feed: 200,
-                time: "16:12",
-              ),
-              FeedHourCard(
-                date: "13-09-2022",
-                feed: 200,
-                time: "16:12",
-              ),
-              FeedHourCard(
-                date: "13-09-2022",
-                feed: 200,
-                time: "16:12",
-              ),
-            ],
+            children: controller.list_feedHistoryHourly
+                .map(
+                  (feedHistoryHourly) => FeedHourCard(
+                    activation: controller.activation,
+                    pond: controller.pond,
+                    feedHistoryMonthly: controller.feedHistoryMonthly,
+                    feedHistoryWeekly: controller.feedHistoryWeekly,
+                    feedHistoryDaily: controller.feedHistoryDaily,
+                    feedHistoryHourly: feedHistoryHourly,
+                  ),
+                )
+                .toList(),
           ));
     }
 
@@ -282,7 +272,7 @@ class DetailFeedDailyPage extends StatelessWidget {
           body: ListView(
             children: [
               feedDailyRecap(),
-              detail(),
+              // detail(),
               recapTitle(),
               // chartRecap(),
               listHourFeed(),

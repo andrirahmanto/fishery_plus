@@ -1,19 +1,31 @@
+import 'package:fish/models/FeedHistoryDaily.dart';
+import 'package:fish/models/FeedHistoryHourly.dart';
+import 'package:fish/models/FeedHistoryMonthly.dart';
+import 'package:fish/models/FeedHistoryWeekly.dart';
+import 'package:fish/models/activation_model.dart';
+import 'package:fish/models/pond_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
 
 class FeedHourCard extends StatelessWidget {
-  final String? date;
-  final String? time;
-  final num? feed;
+  final Activation? activation;
+  final Pond? pond;
+  final FeedHistoryMonthly? feedHistoryMonthly;
+  final FeedHistoryWeekly? feedHistoryWeekly;
+  final FeedHistoryDaily? feedHistoryDaily;
+  final FeedHistoryHourly? feedHistoryHourly;
 
-  const FeedHourCard({
-    Key? key,
-    this.date,
-    this.time,
-    this.feed,
-  }) : super(key: key);
+  const FeedHourCard(
+      {Key? key,
+      this.activation,
+      this.pond,
+      this.feedHistoryMonthly,
+      this.feedHistoryWeekly,
+      this.feedHistoryDaily,
+      this.feedHistoryHourly})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +61,7 @@ class FeedHourCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.date!,
+                      feedHistoryHourly!.getDate(),
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -72,7 +84,7 @@ class FeedHourCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.time!,
+                      feedHistoryHourly!.getTime(),
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -95,7 +107,7 @@ class FeedHourCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.feed.toString() + " Kg",
+                      "${feedHistoryHourly!.totalFeedWeight} Kg",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,

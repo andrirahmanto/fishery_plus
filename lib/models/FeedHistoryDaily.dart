@@ -29,4 +29,5 @@ class FeedHistoryDaily {
   }
 
   String getDayName() => DateFormat('EEEE').format(date!);
+  String getDate() => DateFormat('yyyy-MM-dd').format(date!);
 }
