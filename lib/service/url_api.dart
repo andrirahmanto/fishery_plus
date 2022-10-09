@@ -21,4 +21,8 @@ class Urls {
       '$baseUrl/feedhistorys/day/$activationId/$week';
   static String feedHistory(String? activationId, date) =>
       '$baseUrl/feedhistorys/hour/$activationId/$date';
+
+  // Fish Grading
+  static String fishGrading(String? activation_id) =>
+      '$baseUrl/fishgradings/activation/$activation_id';
 }

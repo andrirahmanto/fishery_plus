@@ -24,7 +24,7 @@ class DetailGradingPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "kolam Alpha",
+                  "kolam ${controller.pond.alias}",
                   style: primaryTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: heavy,
@@ -63,7 +63,7 @@ class DetailGradingPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "01-09-2022 sampai 02-09-2022",
+                  "${controller.activation.getStringActivationDate()} sampai ${controller.activation.getStringDeactivationDate()}",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -90,7 +90,7 @@ class DetailGradingPage extends StatelessWidget {
                           maxLines: 1,
                         ),
                         Text(
-                          "> 100 gram",
+                          "> ${controller.fishGrading.avgFishWeight! * controller.activation.consOver!} gram",
                           style: secondaryTextStyle.copyWith(
                             fontSize: 13,
                             fontWeight: medium,
@@ -121,7 +121,7 @@ class DetailGradingPage extends StatelessWidget {
                           maxLines: 1,
                         ),
                         Text(
-                          "> 100 gram",
+                          "> ${controller.fishGrading.avgFishWeight! * controller.activation.consUnder!} gram",
                           style: secondaryTextStyle.copyWith(
                             fontSize: 13,
                             fontWeight: medium,
@@ -188,7 +188,7 @@ class DetailGradingPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "01-09-2022",
+                  "${controller.fishGrading.getDate()}",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -224,7 +224,7 @@ class DetailGradingPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Lele",
+                  controller.fishGrading.fishType!,
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -245,7 +245,7 @@ class DetailGradingPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "20 cm",
+                  "${controller.fishGrading.avgFishLong ?? 0} cm",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -266,7 +266,7 @@ class DetailGradingPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "2 Ekor",
+                  "${controller.fishGrading.undersizeFish} Ekor",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -289,7 +289,7 @@ class DetailGradingPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "8/100 Ekor",
+                  "${controller.fishGrading.samplingAmount}/100 Ekor",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -310,7 +310,7 @@ class DetailGradingPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "80 gram",
+                  "${controller.fishGrading.avgFishWeight} gram",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -331,7 +331,7 @@ class DetailGradingPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "8 Ekor",
+                  "${controller.fishGrading.oversizeFish} Ekor",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,

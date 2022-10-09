@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fish/models/fishGrading_model.dart';
 import 'package:fish/pages/component/grading_card.dart';
 import 'package:fish/pages/grading/grading_controller.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class GradingPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "kolam Alpha",
+                  "kolam ${controller.pond.alias}",
                   style: primaryTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: heavy,
@@ -170,35 +171,21 @@ class GradingPage extends StatelessWidget {
           width: double.infinity,
           margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
           child: Column(
-            children: [
-              GradingCard(
-                date: "1",
-                weightAvg: 200,
-                sample: 10,
-              ),
-              GradingCard(
-                date: "1",
-                weightAvg: 200,
-                sample: 10,
-              ),
-              GradingCard(
-                date: "1",
-                weightAvg: 200,
-                sample: 10,
-              ),
-              GradingCard(
-                date: "1",
-                weightAvg: 200,
-                sample: 10,
-              ),
-            ],
+            children: controller.list_fishGrading
+                .map(
+                  (fishGrading) => GradingCard(
+                      activation: controller.activation,
+                      pond: controller.pond,
+                      fishGrading: fishGrading),
+                )
+                .toList(),
           ));
     }
 
     Widget sizingSec() {
       return Container(
         width: double.infinity,
-        margin: EdgeInsets.only(left: 20, right: 20),
+        margin: EdgeInsets.only(left: 20, right: 20, top: 20),
         padding: EdgeInsets.only(top: 16, bottom: 16, right: 20, left: 20),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -212,7 +199,7 @@ class GradingPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       "Oversize",
@@ -224,7 +211,7 @@ class GradingPage extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      '> 100 gram',
+                      '${controller.activation.consOver} x avg',
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -235,7 +222,7 @@ class GradingPage extends StatelessWidget {
                   ],
                 ),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       "Undersize",
@@ -247,7 +234,7 @@ class GradingPage extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      '<= 70 gram',
+                      '${controller.activation.consUnder} x avg',
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -310,7 +297,7 @@ class GradingPage extends StatelessWidget {
           body: ListView(
             children: [
               gradingDataRecap(),
-              detail(),
+              // detail(),
               sizingSec(),
               entryGradingButton(),
               recapTitle(),

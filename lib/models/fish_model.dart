@@ -7,7 +7,7 @@ class Fish {
 
   Fish({
     required this.type,
-    required this.amount,
+    this.amount,
   });
 
   factory Fish.fromJson(Map<String, dynamic> json) {

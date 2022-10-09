@@ -1,25 +1,32 @@
+import 'package:fish/models/activation_model.dart';
+import 'package:fish/models/fishGrading_model.dart';
+import 'package:fish/models/pond_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/pages/grading/detail_grading_page.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
 
 class GradingCard extends StatelessWidget {
-  final String? date;
-  final num? weightAvg;
-  final num? sample;
+  final Activation? activation;
+  final Pond? pond;
+  final FishGrading? fishGrading;
 
   const GradingCard({
     Key? key,
-    this.date,
-    this.weightAvg,
-    this.sample,
+    this.activation,
+    this.pond,
+    this.fishGrading,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailGradingPage());
+        Get.to(() => DetailGradingPage(), arguments: {
+          "activation": activation,
+          "pond": pond,
+          "fishGrading": fishGrading,
+        });
       },
       child: Container(
         width: double.infinity,
@@ -38,74 +45,80 @@ class GradingCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Tanggal",
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 14,
-                        fontWeight: bold,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Tanggal",
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 13,
+                          fontWeight: bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                    Text(
-                      this.date!,
-                      style: secondaryTextStyle.copyWith(
-                        fontSize: 14,
-                        fontWeight: medium,
+                      Text(
+                        fishGrading!.getDate(),
+                        style: secondaryTextStyle.copyWith(
+                          fontSize: 13,
+                          fontWeight: medium,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Bobot Rata Rata",
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 14,
-                        fontWeight: bold,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Bobot Rata Rata",
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 13,
+                          fontWeight: bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                    Text(
-                      this.weightAvg.toString() + ' gram',
-                      style: secondaryTextStyle.copyWith(
-                        fontSize: 14,
-                        fontWeight: medium,
+                      Text(
+                        '${fishGrading!.avgFishWeight} gram',
+                        style: secondaryTextStyle.copyWith(
+                          fontSize: 13,
+                          fontWeight: medium,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Jumlah Sample",
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 14,
-                        fontWeight: bold,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Jumlah Sample",
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 13,
+                          fontWeight: bold,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                    Text(
-                      this.sample.toString() + "/100 Ekor",
-                      style: secondaryTextStyle.copyWith(
-                        fontSize: 14,
-                        fontWeight: medium,
+                      Text(
+                        "${fishGrading!.avgFishWeight}/100 Ekor",
+                        style: secondaryTextStyle.copyWith(
+                          fontSize: 13,
+                          fontWeight: medium,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
