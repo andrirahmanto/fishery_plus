@@ -3,11 +3,13 @@ import 'dart:async';
 import 'package:fish/models/fishGrading_model.dart';
 import 'package:fish/pages/component/grading_card.dart';
 import 'package:fish/pages/grading/grading_controller.dart';
+import 'package:fish/pages/grading/grading_entry_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/pages/grading/grading_constanta_edit_page.dart';
 import 'package:fish/pages/grading/grading_entry_page.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class GradingPage extends StatelessWidget {
   const GradingPage({Key? key}) : super(key: key);
@@ -15,6 +17,57 @@ class GradingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GradingController controller = Get.put(GradingController());
+
+    Widget chartGrading() {
+      return Container(
+        child: SfCartesianChart(
+          enableAxisAnimation: true,
+          tooltipBehavior: TooltipBehavior(enable: true),
+          zoomPanBehavior: ZoomPanBehavior(
+            enablePanning: true,
+          ),
+          title: ChartTitle(
+              text: 'Rekap Grading', textStyle: TextStyle(color: Colors.white)),
+          legend: Legend(
+              isVisible: true,
+              position: LegendPosition.bottom,
+              textStyle: TextStyle(color: Colors.white)),
+          primaryXAxis: CategoryAxis(
+              labelStyle: TextStyle(color: Colors.white),
+              autoScrollingDelta: 4),
+          primaryYAxis: NumericAxis(
+              labelFormat: '{value}gram',
+              // maximum: 100,
+              // minimum: 0,
+              labelStyle: TextStyle(color: Colors.white)),
+          series: <ChartSeries>[
+            LineSeries<GradingLeleData, dynamic>(
+                enableTooltip: true,
+                color: Colors.blueAccent,
+                dataSource: controller.charLeleData,
+                xValueMapper: (GradingLeleData grading, _) => grading.date,
+                yValueMapper: (GradingLeleData grading, _) => grading.avgweight,
+                name: 'Lele'),
+            LineSeries<GradingNilaMerahData, dynamic>(
+                enableTooltip: true,
+                color: Colors.pink,
+                dataSource: controller.charNilaMerahData,
+                xValueMapper: (GradingNilaMerahData grading, _) => grading.date,
+                yValueMapper: (GradingNilaMerahData grading, _) =>
+                    grading.avgweight,
+                name: 'Nila Merah'),
+            LineSeries<GradingNilaHitamData, dynamic>(
+                enableTooltip: true,
+                color: Colors.green,
+                dataSource: controller.charNilaHitamData,
+                xValueMapper: (GradingNilaHitamData grading, _) => grading.date,
+                yValueMapper: (GradingNilaHitamData grading, _) =>
+                    grading.avgweight,
+                name: 'Nila Hitam'),
+          ],
+        ),
+      );
+    }
 
     Widget gradingDataRecap() {
       return Container(
@@ -156,16 +209,6 @@ class GradingPage extends StatelessWidget {
       );
     }
 
-    // Widget chartRecap() {
-    //   return Container(
-    //     width: double.infinity,
-    //     margin: EdgeInsets.only(
-    //         top: defaultSpace * 2, right: defaultMargin, left: defaultMargin),
-    //     // decoration: BoxDecoration(
-    //     //     image: DecorationImage(image: AssetImage('assets/feedChart.png'))),
-    //   );
-    // }
-
     Widget listMonthFeed() {
       return Container(
           width: double.infinity,
@@ -296,6 +339,7 @@ class GradingPage extends StatelessWidget {
           backgroundColor: backgroundColor1,
           body: ListView(
             children: [
+              chartGrading(),
               gradingDataRecap(),
               // detail(),
               sizingSec(),

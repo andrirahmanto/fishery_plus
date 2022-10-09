@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:fish/pages/feeding/feed_entry_page.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class DetailFeedPage extends StatelessWidget {
   const DetailFeedPage({Key? key}) : super(key: key);
@@ -13,6 +15,41 @@ class DetailFeedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FeedController controller = Get.put(FeedController());
+
+    Widget chartFeed() {
+      return Container(
+        child: SfCartesianChart(
+          enableAxisAnimation: true,
+          tooltipBehavior: TooltipBehavior(enable: true),
+          zoomPanBehavior: ZoomPanBehavior(
+            enablePanning: true,
+          ),
+          title: ChartTitle(
+              text: 'Total Pakan', textStyle: TextStyle(color: Colors.white)),
+          legend: Legend(
+              isVisible: true,
+              position: LegendPosition.bottom,
+              textStyle: TextStyle(color: Colors.white)),
+          primaryXAxis: CategoryAxis(
+              labelStyle: TextStyle(color: Colors.white),
+              autoScrollingDelta: 4),
+          primaryYAxis: NumericAxis(
+              labelFormat: '{value}Kg',
+              // maximum: 100,
+              // minimum: 0,
+              labelStyle: TextStyle(color: Colors.white)),
+          series: <ChartSeries>[
+            LineSeries<FeedData, dynamic>(
+                enableTooltip: true,
+                color: Colors.blueAccent,
+                dataSource: controller.charData,
+                xValueMapper: (FeedData feed, _) => feed.day,
+                yValueMapper: (FeedData feed, _) => feed.amount,
+                name: 'Jumlah Pakan')
+          ],
+        ),
+      );
+    }
 
     Widget feedDataRecap() {
       return Container(
@@ -250,6 +287,7 @@ class DetailFeedPage extends StatelessWidget {
           backgroundColor: backgroundColor1,
           body: ListView(
             children: [
+              chartFeed(),
               feedDataRecap(),
               // detail(),
               entryPakanButton(),

@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:fish/pages/fish/fish_death_entry_page.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class FishRecapPage extends StatelessWidget {
   const FishRecapPage({Key? key}) : super(key: key);
@@ -13,6 +16,41 @@ class FishRecapPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FishRecapController controller = Get.put(FishRecapController());
+
+    Widget chartDeath() {
+      return Container(
+        child: SfCartesianChart(
+          enableAxisAnimation: true,
+          tooltipBehavior: TooltipBehavior(enable: true),
+          zoomPanBehavior: ZoomPanBehavior(
+            enablePanning: true,
+          ),
+          title: ChartTitle(
+              text: 'Jumlah Ikan Hidup',
+              textStyle: TextStyle(color: Colors.white)),
+          legend: Legend(
+              isVisible: true,
+              position: LegendPosition.bottom,
+              textStyle: TextStyle(color: Colors.white)),
+          primaryXAxis: CategoryAxis(
+              labelStyle: TextStyle(color: Colors.white),
+              autoScrollingDelta: 4),
+          primaryYAxis: NumericAxis(
+              // maximum: 100,
+              // minimum: 0,
+              labelStyle: TextStyle(color: Colors.white)),
+          series: <ChartSeries>[
+            LineSeries<FishLiveData, dynamic>(
+                enableTooltip: true,
+                color: Colors.red,
+                dataSource: controller.charData,
+                xValueMapper: (FishLiveData fish, _) => fish.date,
+                yValueMapper: (FishLiveData fish, _) => fish.amount,
+                name: 'Ikan Hidup')
+          ],
+        ),
+      );
+    }
 
     Widget fishDataRecap() {
       return Container(
@@ -93,7 +131,7 @@ class FishRecapPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Nila Merah : 100 Ekor",
+                  "Nila Merah : 40 Ekor",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -102,7 +140,7 @@ class FishRecapPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Lele : 100 Ekor",
+                  "Lele : 30 Ekor",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -128,7 +166,7 @@ class FishRecapPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Nila Merah : 100 Ekor",
+                  "Nila Merah : 10 Ekor",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -137,7 +175,7 @@ class FishRecapPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Lele : 100 Ekor",
+                  "Lele : 20 Ekor",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -171,16 +209,6 @@ class FishRecapPage extends StatelessWidget {
         ),
       );
     }
-
-    // Widget chartRecap() {
-    //   return Container(
-    //     width: double.infinity,
-    //     margin: EdgeInsets.only(
-    //         top: defaultSpace * 2, right: defaultMargin, left: defaultMargin),
-    //     // decoration: BoxDecoration(
-    //     //     image: DecorationImage(image: AssetImage('assets/feedChart.png'))),
-    //   );
-    // }
 
     Widget listDeath() {
       return Container(
@@ -222,6 +250,7 @@ class FishRecapPage extends StatelessWidget {
           backgroundColor: backgroundColor1,
           body: ListView(
             children: [
+              chartDeath(),
               fishDataRecap(),
               detail(),
               // sizingSec(),

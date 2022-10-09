@@ -95,7 +95,7 @@ class DeathCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.amount.toString() + " 100 Ekor",
+                      this.amount.toString() + " Ekor",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
