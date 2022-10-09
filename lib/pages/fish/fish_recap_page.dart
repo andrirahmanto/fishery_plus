@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:fish/pages/fish/fish_death_entry_page.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class FishRecapPage extends StatelessWidget {
   const FishRecapPage({Key? key}) : super(key: key);
@@ -13,6 +16,68 @@ class FishRecapPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final FishRecapController controller = Get.put(FishRecapController());
+
+    Widget chartDeath() {
+      return Container(
+        child: SfCartesianChart(
+          enableAxisAnimation: true,
+          tooltipBehavior: TooltipBehavior(enable: true),
+          zoomPanBehavior: ZoomPanBehavior(
+            enablePanning: true,
+          ),
+          title: ChartTitle(
+              text: 'Jumlah Ikan Hidup',
+              textStyle: TextStyle(color: Colors.white)),
+          legend: Legend(
+              isVisible: true,
+              position: LegendPosition.bottom,
+              textStyle: TextStyle(color: Colors.white)),
+          primaryXAxis: CategoryAxis(
+              labelStyle: TextStyle(color: Colors.white),
+              maximumLabels: 20,
+              autoScrollingDelta: 4),
+          primaryYAxis: NumericAxis(
+              // maximum: 100,
+              // minimum: 0,
+              labelStyle: TextStyle(color: Colors.white)),
+          series: <ChartSeries>[
+            LineSeries<FishLiveData, dynamic>(
+                dataLabelSettings: DataLabelSettings(isVisible: true),
+                enableTooltip: true,
+                color: Colors.amber,
+                dataSource: controller.charData,
+                xValueMapper: (FishLiveData fish, _) => fish.date,
+                yValueMapper: (FishLiveData fish, _) => fish.amount,
+                name: 'Ikan Hidup')
+          ],
+        ),
+      );
+    }
+    // Widget chartDeath() {
+    //   return Container(
+    //       padding: EdgeInsets.only(top: 10, bottom: 10),
+    //       width: double.infinity,
+    //       height: 200,
+    //       margin: EdgeInsets.only(
+    //           top: defaultSpace, right: defaultMargin, left: defaultMargin),
+    //       child: LineChart(
+    //         LineChartData(minX: 0, maxX: 11, minY: 0, maxY: 6,
+    //          borderData: FlBorderData(show: true,
+    //          border: ),
+    //          lineBarsData: [
+    //           LineChartBarData(spots: [
+    //             FlSpot(0, 3),
+    //             FlSpot(1, 2),
+    //             FlSpot(2, 6),
+    //           ], color: Colors.amber),
+    //           LineChartBarData(spots: [
+    //             FlSpot(0, 1),
+    //             FlSpot(1, 4),
+    //             FlSpot(2, 3),
+    //           ], color: Colors.red)
+    //         ]),
+    //       ));
+    // };
 
     Widget fishDataRecap() {
       return Container(
@@ -213,6 +278,7 @@ class FishRecapPage extends StatelessWidget {
     }
 
     return Obx(() {
+      List<FishLiveData> _chartData;
       if (controller.isLoading.value == false) {
         return Scaffold(
           appBar: AppBar(
@@ -222,6 +288,7 @@ class FishRecapPage extends StatelessWidget {
           backgroundColor: backgroundColor1,
           body: ListView(
             children: [
+              chartDeath(),
               fishDataRecap(),
               detail(),
               // sizingSec(),
