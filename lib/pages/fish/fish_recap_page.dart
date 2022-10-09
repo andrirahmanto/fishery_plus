@@ -34,7 +34,6 @@ class FishRecapPage extends StatelessWidget {
               textStyle: TextStyle(color: Colors.white)),
           primaryXAxis: CategoryAxis(
               labelStyle: TextStyle(color: Colors.white),
-              maximumLabels: 20,
               autoScrollingDelta: 4),
           primaryYAxis: NumericAxis(
               // maximum: 100,
@@ -42,9 +41,8 @@ class FishRecapPage extends StatelessWidget {
               labelStyle: TextStyle(color: Colors.white)),
           series: <ChartSeries>[
             LineSeries<FishLiveData, dynamic>(
-                dataLabelSettings: DataLabelSettings(isVisible: true),
                 enableTooltip: true,
-                color: Colors.amber,
+                color: Colors.red,
                 dataSource: controller.charData,
                 xValueMapper: (FishLiveData fish, _) => fish.date,
                 yValueMapper: (FishLiveData fish, _) => fish.amount,
@@ -53,31 +51,6 @@ class FishRecapPage extends StatelessWidget {
         ),
       );
     }
-    // Widget chartDeath() {
-    //   return Container(
-    //       padding: EdgeInsets.only(top: 10, bottom: 10),
-    //       width: double.infinity,
-    //       height: 200,
-    //       margin: EdgeInsets.only(
-    //           top: defaultSpace, right: defaultMargin, left: defaultMargin),
-    //       child: LineChart(
-    //         LineChartData(minX: 0, maxX: 11, minY: 0, maxY: 6,
-    //          borderData: FlBorderData(show: true,
-    //          border: ),
-    //          lineBarsData: [
-    //           LineChartBarData(spots: [
-    //             FlSpot(0, 3),
-    //             FlSpot(1, 2),
-    //             FlSpot(2, 6),
-    //           ], color: Colors.amber),
-    //           LineChartBarData(spots: [
-    //             FlSpot(0, 1),
-    //             FlSpot(1, 4),
-    //             FlSpot(2, 3),
-    //           ], color: Colors.red)
-    //         ]),
-    //       ));
-    // };
 
     Widget fishDataRecap() {
       return Container(
@@ -158,7 +131,7 @@ class FishRecapPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Nila Merah : 100 Ekor",
+                  "Nila Merah : 40 Ekor",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -167,7 +140,7 @@ class FishRecapPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Lele : 100 Ekor",
+                  "Lele : 30 Ekor",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -193,7 +166,7 @@ class FishRecapPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Nila Merah : 100 Ekor",
+                  "Nila Merah : 10 Ekor",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -202,7 +175,7 @@ class FishRecapPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Lele : 100 Ekor",
+                  "Lele : 20 Ekor",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -237,16 +210,6 @@ class FishRecapPage extends StatelessWidget {
       );
     }
 
-    // Widget chartRecap() {
-    //   return Container(
-    //     width: double.infinity,
-    //     margin: EdgeInsets.only(
-    //         top: defaultSpace * 2, right: defaultMargin, left: defaultMargin),
-    //     // decoration: BoxDecoration(
-    //     //     image: DecorationImage(image: AssetImage('assets/feedChart.png'))),
-    //   );
-    // }
-
     Widget listDeath() {
       return Container(
           width: double.infinity,
@@ -278,7 +241,6 @@ class FishRecapPage extends StatelessWidget {
     }
 
     return Obx(() {
-      List<FishLiveData> _chartData;
       if (controller.isLoading.value == false) {
         return Scaffold(
           appBar: AppBar(
