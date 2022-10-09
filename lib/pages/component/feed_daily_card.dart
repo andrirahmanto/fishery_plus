@@ -1,25 +1,40 @@
+import 'package:fish/models/FeedHistoryDaily.dart';
+import 'package:fish/models/FeedHistoryMonthly.dart';
+import 'package:fish/models/FeedHistoryWeekly.dart';
+import 'package:fish/models/activation_model.dart';
+import 'package:fish/models/pond_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/pages/feeding/detail_feed_daily_page.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
 
 class FeedDailyCard extends StatelessWidget {
-  final String? day;
-  final num? feed;
-  final num? feedcount;
+  final Activation? activation;
+  final Pond? pond;
+  final FeedHistoryMonthly? feedHistoryMonthly;
+  final FeedHistoryWeekly? feedHistoryWeekly;
+  final FeedHistoryDaily? feedHistoryDaily;
 
-  const FeedDailyCard({
-    Key? key,
-    this.day,
-    this.feed,
-    this.feedcount,
-  }) : super(key: key);
+  const FeedDailyCard(
+      {Key? key,
+      this.activation,
+      this.pond,
+      this.feedHistoryMonthly,
+      this.feedHistoryWeekly,
+      this.feedHistoryDaily})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailFeedDailyPage());
+        Get.to(() => DetailFeedDailyPage(), arguments: {
+          "activation": activation,
+          "pond": pond,
+          "feedHistoryMonthly": feedHistoryMonthly,
+          "feedHistoryWeekly": feedHistoryWeekly,
+          "feedHistoryDaily": feedHistoryDaily,
+        });
       },
       child: Container(
         width: double.infinity,
@@ -51,7 +66,7 @@ class FeedDailyCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.day!,
+                      feedHistoryDaily!.getDayName(),
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -74,7 +89,7 @@ class FeedDailyCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.feed.toString() + " Kg",
+                      "${feedHistoryDaily!.totalFeedWeight} Kg",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -97,7 +112,7 @@ class FeedDailyCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.feedcount.toString() + " Kali",
+                      "${feedHistoryDaily!.totalFeed} Kali",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
