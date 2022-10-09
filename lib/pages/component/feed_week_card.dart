@@ -26,7 +26,12 @@ class FeedWeeklyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailFeedWeeklyPage());
+        Get.to(() => DetailFeedWeeklyPage(), arguments: {
+          "activation": activation,
+          "pond": pond,
+          "feedHistoryMonthly": feedHistoryMonthly,
+          "feedHistoryWeekly": feedHistoryWeekly
+        });
       },
       child: Container(
         width: double.infinity,

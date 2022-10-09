@@ -25,7 +25,7 @@ class DetailFeedWeeklyPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "kolam Alpha",
+                  "kolam ${controller.pond.alias}",
                   style: primaryTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: heavy,
@@ -34,7 +34,7 @@ class DetailFeedWeeklyPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Bulan Ke-1",
+                  "Bulan ${controller.feedHistoryMonthly.getMonthNameFull()}",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -43,7 +43,7 @@ class DetailFeedWeeklyPage extends StatelessWidget {
                   maxLines: 1,
                 ),
                 Text(
-                  "Minggu Ke-1",
+                  "Minggu Ke-${controller.feedHistoryWeekly.week}",
                   style: secondaryTextStyle.copyWith(
                     fontSize: 13,
                     fontWeight: medium,
@@ -237,28 +237,17 @@ class DetailFeedWeeklyPage extends StatelessWidget {
           width: double.infinity,
           margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
           child: Column(
-            children: [
-              FeedDailyCard(
-                day: "Senin",
-                feed: 200,
-                feedcount: 30,
-              ),
-              FeedDailyCard(
-                day: "Selasa",
-                feed: 200,
-                feedcount: 30,
-              ),
-              FeedDailyCard(
-                day: "Rabu",
-                feed: 200,
-                feedcount: 30,
-              ),
-              FeedDailyCard(
-                day: "Kamis",
-                feed: 200,
-                feedcount: 30,
-              ),
-            ],
+            children: controller.list_feedHistoryDaily
+                .map(
+                  (feedHistoryDaily) => FeedDailyCard(
+                    activation: controller.activation,
+                    pond: controller.pond,
+                    feedHistoryMonthly: controller.feedHistoryMonthly,
+                    feedHistoryWeekly: controller.feedHistoryWeekly,
+                    feedHistoryDaily: feedHistoryDaily,
+                  ),
+                )
+                .toList(),
           ));
     }
 
@@ -273,7 +262,7 @@ class DetailFeedWeeklyPage extends StatelessWidget {
           body: ListView(
             children: [
               feedWeeklyDataRecap(),
-              detail(),
+              // detail(),
               recapTitle(),
               // chartRecap(),
               listDailyFeed(),
