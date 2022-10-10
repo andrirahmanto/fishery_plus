@@ -13,7 +13,9 @@ class Fish {
   factory Fish.fromJson(Map<String, dynamic> json) {
     return Fish(
       type: json['fish_type'],
-      amount: json['fish_amount'],
+      amount: json['fish_amount'] <= 0
+          ? json['fish_amount'] * -1
+          : json['fish_amount'],
     );
   }
 

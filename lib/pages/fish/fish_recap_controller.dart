@@ -1,3 +1,7 @@
+import 'package:fish/models/activation_model.dart';
+import 'package:fish/models/fishDeath_model.dart';
+import 'package:fish/models/pond_model.dart';
+import 'package:fish/service/fish_death_service.dart';
 import 'package:get/get.dart';
 
 class FishRecapController extends GetxController {
@@ -10,6 +14,24 @@ class FishRecapController extends GetxController {
   ].obs;
 
   var isLoading = false.obs;
+  Activation activation = Get.arguments["activation"];
+  Pond pond = Get.arguments["pond"];
+  final list_fishDeath = <FishDeath>[].obs;
+
+  @override
+  void onInit() async {
+    getFishDeaths(activation_id: activation.id!);
+    super.onInit();
+  }
+
+  Future<void> getFishDeaths({required String activation_id}) async {
+    isLoading.value = true;
+    list_fishDeath.clear();
+    List<FishDeath> feedHistoryMonthly =
+        await FishDeathService().fetchFishDeaths(activationId: activation_id);
+    list_fishDeath.addAll(feedHistoryMonthly);
+    isLoading.value = false;
+  }
 }
 
 class FishLiveData {

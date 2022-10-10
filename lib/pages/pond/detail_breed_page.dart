@@ -141,8 +141,10 @@ class DetailBreedPage extends StatelessWidget {
             top: defaultSpace, right: defaultMargin, left: defaultMargin),
         child: TextButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => FishRecapPage()));
+            Get.to(() => FishRecapPage(), arguments: {
+              "pond": controller.pond,
+              "activation": controller.activation,
+            });
           },
           style: TextButton.styleFrom(
             backgroundColor: Colors.green.shade400,
@@ -288,7 +290,7 @@ class DetailBreedPage extends StatelessWidget {
               maxLines: 1,
             ),
             Column(
-              children: controller.activation.fishes!
+              children: controller.activation.fishLive!
                   .map(
                     (fish) => FishListCard(fish: fish),
                   )

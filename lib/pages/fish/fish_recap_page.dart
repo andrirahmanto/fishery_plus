@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fish/models/fish_model.dart';
 import 'package:fish/pages/component/death_card.dart';
 import 'package:fish/pages/fish/fish_recap_controller.dart';
 import 'package:flutter/material.dart';
@@ -130,23 +131,21 @@ class FishRecapPage extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
-                Text(
-                  "Nila Merah : 40 Ekor",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                Text(
-                  "Lele : 30 Ekor",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: controller.activation.fishLive!
+                      .map(
+                        (fish) => Text(
+                          "${fish.type} : ${fish.amount} Ekor",
+                          style: secondaryTextStyle.copyWith(
+                            fontSize: 13,
+                            fontWeight: medium,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      )
+                      .toList(),
                 ),
                 SizedBox(
                   height: 20,
@@ -165,23 +164,21 @@ class FishRecapPage extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                 ),
-                Text(
-                  "Nila Merah : 10 Ekor",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                Text(
-                  "Lele : 20 Ekor",
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: medium,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: controller.activation.fishDeath!
+                      .map(
+                        (fish) => Text(
+                          "${fish.type} : ${fish.amount} Ekor",
+                          style: secondaryTextStyle.copyWith(
+                            fontSize: 13,
+                            fontWeight: medium,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      )
+                      .toList(),
                 ),
                 SizedBox(
                   height: 20,
@@ -215,28 +212,13 @@ class FishRecapPage extends StatelessWidget {
           width: double.infinity,
           margin: EdgeInsets.only(right: defaultMargin, left: defaultMargin),
           child: Column(
-            children: [
-              DeathCard(
-                date: "10-07-2022",
-                type: "Lele",
-                amount: 3,
-              ),
-              DeathCard(
-                date: "09-08-2022",
-                type: "Lele",
-                amount: 3,
-              ),
-              DeathCard(
-                date: "12-09-2022",
-                type: "Lele",
-                amount: 3,
-              ),
-              DeathCard(
-                date: "03-10-2022",
-                type: "Lele",
-                amount: 3,
-              ),
-            ],
+            children: controller.list_fishDeath
+                .map(
+                  (fishDeath) => DeathCard(
+                    fishDeath: fishDeath,
+                  ),
+                )
+                .toList(),
           ));
     }
 

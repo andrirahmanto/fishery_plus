@@ -14,7 +14,8 @@ class Activation {
   num? consOver;
   num? consUnder;
   int? fishAmount;
-  List<Fish>? fishes;
+  List<Fish>? fishLive;
+  List<Fish>? fishDeath;
 
   Activation({
     required this.id,
@@ -28,7 +29,8 @@ class Activation {
     this.consOver,
     this.consUnder,
     this.fishAmount,
-    this.fishes,
+    this.fishLive,
+    this.fishDeath,
   });
 
   factory Activation.fromJson(Map<String, dynamic> json) {
@@ -48,7 +50,8 @@ class Activation {
         consOver: json['constanta_oversize'],
         consUnder: json['constanta_undersize'],
         fishAmount: json['total_fish'],
-        fishes: Fish.fromJsonList(json['fish']));
+        fishLive: Fish.fromJsonList(json['fish_live']),
+        fishDeath: Fish.fromJsonList(json['fish_death']));
   }
 
   static DateTime stringToDate(String dateString) {

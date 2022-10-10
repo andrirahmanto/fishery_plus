@@ -1,18 +1,15 @@
+import 'package:fish/models/fishDeath_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/pages/grading/detail_grading_page.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
 
 class DeathCard extends StatelessWidget {
-  final String? date;
-  final String? type;
-  final num? amount;
+  final FishDeath? fishDeath;
 
   const DeathCard({
     Key? key,
-    this.date,
-    this.type,
-    this.amount,
+    this.fishDeath,
   }) : super(key: key);
 
   @override
@@ -49,7 +46,7 @@ class DeathCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.date!,
+                      fishDeath!.getDate(),
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -72,7 +69,7 @@ class DeathCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.type!,
+                      fishDeath!.fishType!,
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,
@@ -95,7 +92,7 @@ class DeathCard extends StatelessWidget {
                       maxLines: 1,
                     ),
                     Text(
-                      this.amount.toString() + " Ekor",
+                      "${fishDeath!.deathAmount} Ekor",
                       style: secondaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: medium,

@@ -1,6 +1,6 @@
 class Urls {
-  static final String baseUrl = 'http://jft.web.id/fishapi/api';
-  // static final String baseUrl = 'http://10.0.2.2:5000/api';
+  // static final String baseUrl = 'http://jft.web.id/fishapi/api';
+  static final String baseUrl = 'http://10.0.2.2:5000/api';
 
   // Home
   static final String statistic = '$baseUrl/statistic';
@@ -25,4 +25,8 @@ class Urls {
   // Fish Grading
   static String fishGrading(String? activation_id) =>
       '$baseUrl/fishgradings/activation/$activation_id';
+
+  // Fish Death
+  static String fishDeath(String? activation_id) =>
+      '$baseUrl/fishdeath/activation/$activation_id';
 }
