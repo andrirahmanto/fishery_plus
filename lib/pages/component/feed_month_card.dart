@@ -96,7 +96,7 @@ class FeedMonthCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Ikan",
+                      "Total Pemberian",
                       style: primaryTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: bold,
