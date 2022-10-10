@@ -109,7 +109,7 @@ class GradingCard extends StatelessWidget {
                         maxLines: 1,
                       ),
                       Text(
-                        "${fishGrading!.avgFishWeight}/100 Ekor",
+                        "${fishGrading!.samplingAmount}/100 Ekor",
                         style: secondaryTextStyle.copyWith(
                           fontSize: 13,
                           fontWeight: medium,

@@ -107,8 +107,7 @@ class GradingPage extends StatelessWidget {
             top: defaultSpace, right: defaultMargin, left: defaultMargin),
         child: TextButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => GradingEntryPage()));
+            Get.to(() => GradingEntryPage(), arguments: controller.pond);
           },
           style: TextButton.styleFrom(
             backgroundColor: Colors.green.shade400,
@@ -299,11 +298,10 @@ class GradingPage extends StatelessWidget {
                       //     left: defaultMargin),
                       child: TextButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ConstantaGradingPage()));
+                          Get.to(() => ConstantaGradingPage(), arguments: {
+                            "activation": controller.activation,
+                            "pond": controller.pond
+                          });
                         },
                         style: TextButton.styleFrom(
                           backgroundColor: primaryColor,

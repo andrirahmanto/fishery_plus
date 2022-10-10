@@ -1,3 +1,4 @@
+import 'package:fish/pages/grading/grading_constanta_edit_controller.dart';
 import 'package:fish/pages/pond/activation_breed_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/theme.dart';
@@ -9,8 +10,8 @@ class ConstantaGradingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ActivationBreedController controller =
-        Get.put(ActivationBreedController());
+    final ConstantaEditController controller =
+        Get.put(ConstantaEditController());
     TextEditingController undersizeController = TextEditingController(text: '');
     TextEditingController oversizeController = TextEditingController(text: '');
 
@@ -22,7 +23,7 @@ class ConstantaGradingPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Undersize (<= X gram>)',
+              'Konstanta Undersize',
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: medium,
@@ -68,7 +69,7 @@ class ConstantaGradingPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Oversize (> X gram>)',
+              'Konstanta Oversize',
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: medium,

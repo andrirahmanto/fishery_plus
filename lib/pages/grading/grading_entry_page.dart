@@ -13,15 +13,6 @@ class GradingEntryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GradingEntryController controller = Get.put(GradingEntryController());
-    TextEditingController fishWeightController =
-        TextEditingController(text: '');
-    TextEditingController undersizeController = TextEditingController(text: '');
-    TextEditingController oversizeController = TextEditingController(text: '');
-    TextEditingController fishLengthAvgController =
-        TextEditingController(text: '');
-    TextEditingController sampleAmountController =
-        TextEditingController(text: '');
-    FishTypeController fishTypeController = FishTypeController();
 
     Widget fishTypelInput() {
       return Container(
@@ -52,9 +43,9 @@ class GradingEntryPage extends StatelessWidget {
               child: Center(
                 child: Obx(() => DropdownButtonFormField<String>(
                       onChanged: (newValue) =>
-                          fishTypeController.setSelected(newValue!),
-                      value: fishTypeController.selected.value,
-                      items: fishTypeController.listFish.map((fish) {
+                          controller.fishTypeController.setSelected(newValue!),
+                      value: controller.fishTypeController.selected.value,
+                      items: controller.fishTypeController.listFish.map((fish) {
                         return DropdownMenuItem<String>(
                           value: fish,
                           child: Text(
@@ -81,7 +72,7 @@ class GradingEntryPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Jumlam Sample (Ekor)',
+              'Jumlah Sample (Ekor)',
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: medium,
@@ -106,7 +97,7 @@ class GradingEntryPage extends StatelessWidget {
                     FilteringTextInputFormatter.digitsOnly
                   ],
                   keyboardType: TextInputType.number,
-                  controller: sampleAmountController,
+                  controller: controller.sampleAmountController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'ex: 2',
                     hintStyle: subtitleTextStyle,
@@ -127,7 +118,7 @@ class GradingEntryPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Berat Total Ikan (Kg)',
+              'Berat Rata-rata Ikan (Kg)',
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: medium,
@@ -152,7 +143,7 @@ class GradingEntryPage extends StatelessWidget {
                     FilteringTextInputFormatter.digitsOnly
                   ],
                   keyboardType: TextInputType.number,
-                  controller: fishWeightController,
+                  controller: controller.fishWeightController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'ex: 20',
                     hintStyle: subtitleTextStyle,
@@ -198,7 +189,7 @@ class GradingEntryPage extends StatelessWidget {
                     FilteringTextInputFormatter.digitsOnly
                   ],
                   keyboardType: TextInputType.number,
-                  controller: fishLengthAvgController,
+                  controller: controller.fishLengthAvgController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'ex: 20',
                     hintStyle: subtitleTextStyle,
@@ -244,7 +235,7 @@ class GradingEntryPage extends StatelessWidget {
                     FilteringTextInputFormatter.digitsOnly
                   ],
                   keyboardType: TextInputType.number,
-                  controller: undersizeController,
+                  controller: controller.undersizeController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'ex: 20',
                     hintStyle: subtitleTextStyle,
@@ -290,7 +281,53 @@ class GradingEntryPage extends StatelessWidget {
                     FilteringTextInputFormatter.digitsOnly
                   ],
                   keyboardType: TextInputType.number,
-                  controller: oversizeController,
+                  controller: controller.oversizeController,
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'ex: 20',
+                    hintStyle: subtitleTextStyle,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget normalsizeInput() {
+      return Container(
+        margin: EdgeInsets.only(
+            top: defaultSpace, right: defaultMargin, left: defaultMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Jumlah Ikan Normalsize (Ekor)',
+              style: primaryTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: medium,
+              ),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            Container(
+              height: 50,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+              ),
+              decoration: BoxDecoration(
+                color: backgroundColor2,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: TextFormField(
+                  style: primaryTextStyle,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  keyboardType: TextInputType.number,
+                  controller: controller.normalsizeController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'ex: 20',
                     hintStyle: subtitleTextStyle,
@@ -310,7 +347,9 @@ class GradingEntryPage extends StatelessWidget {
         margin: EdgeInsets.only(
             top: defaultSpace * 3, right: defaultMargin, left: defaultMargin),
         child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            controller.postFishGrading();
+          },
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
             shape: RoundedRectangleBorder(
@@ -342,6 +381,7 @@ class GradingEntryPage extends StatelessWidget {
               sampleAmountInput(),
               fishWightInput(),
               fishLengthAvgInput(),
+              normalsizeInput(),
               undersizeInput(),
               oversizeInput(),
               submitButton(),

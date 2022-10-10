@@ -11,6 +11,9 @@ class Urls {
 
   // Activation
   static String activation(String? pondId) => '$baseUrl/ponds/status/$pondId';
+  // Post Activation
+  static String pondActivation(String? pondId) =>
+      '$baseUrl/ponds/$pondId/activation';
 
   // Feed Type
   static final String feedType = '$baseUrl/feedtypes';
@@ -27,6 +30,7 @@ class Urls {
       '$baseUrl/feedhistorys/hour/$activationId/$date';
 
   // Fish Grading
+  static final String fishGradings = '$baseUrl/fishgradings';
   static String fishGrading(String? activation_id) =>
       '$baseUrl/fishgradings/activation/$activation_id';
 
