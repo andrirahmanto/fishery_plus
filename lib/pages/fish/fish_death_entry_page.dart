@@ -14,9 +14,6 @@ class FishDeathEntryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final FishDeathEntryController controller =
         Get.put(FishDeathEntryController());
-    TextEditingController undersizeController = TextEditingController(text: '');
-    TextEditingController oversizeController = TextEditingController(text: '');
-    FishTypeController fishTypeController = FishTypeController();
 
     Widget fishTypeInput() {
       return Container(
@@ -47,9 +44,9 @@ class FishDeathEntryPage extends StatelessWidget {
               child: Center(
                 child: Obx(() => DropdownButtonFormField<String>(
                       onChanged: (newValue) =>
-                          fishTypeController.setSelected(newValue!),
-                      value: fishTypeController.selected.value,
-                      items: fishTypeController.listFish.map((fish) {
+                          controller.fishTypeController.setSelected(newValue!),
+                      value: controller.fishTypeController.selected.value,
+                      items: controller.fishTypeController.listFish.map((fish) {
                         return DropdownMenuItem<String>(
                           value: fish,
                           child: Text(
@@ -61,52 +58,6 @@ class FishDeathEntryPage extends StatelessWidget {
                       dropdownColor: backgroundColor5,
                       decoration: InputDecoration(border: InputBorder.none),
                     )),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    Widget undersizeInput() {
-      return Container(
-        margin: EdgeInsets.only(
-            top: defaultSpace, right: defaultMargin, left: defaultMargin),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Jenis Ikan',
-              style: primaryTextStyle.copyWith(
-                fontSize: 16,
-                fontWeight: medium,
-              ),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Container(
-              height: 50,
-              padding: EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
-              decoration: BoxDecoration(
-                color: backgroundColor2,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: TextFormField(
-                  style: primaryTextStyle,
-                  inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly
-                  ],
-                  keyboardType: TextInputType.number,
-                  controller: undersizeController,
-                  decoration: InputDecoration.collapsed(
-                    hintText: 'ex: 20',
-                    hintStyle: subtitleTextStyle,
-                  ),
-                ),
               ),
             ),
           ],
@@ -147,7 +98,7 @@ class FishDeathEntryPage extends StatelessWidget {
                     FilteringTextInputFormatter.digitsOnly
                   ],
                   keyboardType: TextInputType.number,
-                  controller: oversizeController,
+                  controller: controller.formDeathController,
                   decoration: InputDecoration.collapsed(
                     hintText: 'ex: 20',
                     hintStyle: subtitleTextStyle,
@@ -167,7 +118,9 @@ class FishDeathEntryPage extends StatelessWidget {
         margin: EdgeInsets.only(
             top: defaultSpace * 3, right: defaultMargin, left: defaultMargin),
         child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            controller.postFishDeath();
+          },
           style: TextButton.styleFrom(
             backgroundColor: primaryColor,
             shape: RoundedRectangleBorder(

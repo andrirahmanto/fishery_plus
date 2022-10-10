@@ -578,8 +578,8 @@ class ActivationBreedPage extends StatelessWidget {
           body: ListView(
             children: [
               checkBoxFish(),
-              controller.isNilaHitam == true ? nilaMerahInput() : Container(),
-              controller.isNilaMerah == true ? nilaHitamInput() : Container(),
+              controller.isNilaHitam == true ? nilaHitamInput() : Container(),
+              controller.isNilaMerah == true ? nilaMerahInput() : Container(),
               controller.isLele == true ? leleInput() : Container(),
               controller.isPatin == true ? patinInput() : Container(),
               controller.isMas == true ? masInput() : Container(),

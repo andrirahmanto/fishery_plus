@@ -96,13 +96,14 @@ class ActivationBreedController extends GetxController {
   }
 
   Future<void> pondActivation() async {
-    bool value = await ActivationService().postActivation(
-      pondId: pond.id,
-      fish: buildJsonFish(),
-      isWaterPreparation: false,
-      waterLevel: waterHeightController.value.text,
-    );
-    print(value);
-    Get.to(() => DashboardPage());
+    print(buildJsonFish());
+    // bool value = await ActivationService().postActivation(
+    //   pondId: pond.id,
+    //   fish: buildJsonFish(),
+    //   isWaterPreparation: false,
+    //   waterLevel: waterHeightController.value.text,
+    // );
+    // print(value);
+    // Get.to(() => DashboardPage());
   }
 }

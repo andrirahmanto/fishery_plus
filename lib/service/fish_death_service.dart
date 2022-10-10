@@ -27,4 +27,31 @@ class FishDeathService {
       throw Exception('Gagal Get fishdeath!');
     }
   }
+
+  Future<bool> postFishDeath({
+    required String? pondId,
+    required List fish,
+  }) async {
+    print({"pond_id": pondId, "fish_death_amount": fish});
+    final response = await http.post(
+      Uri.parse(Urls.fishDeaths),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      encoding: Encoding.getByName('utf-8'),
+      body: {
+        "pond_id": pondId,
+        "fish_death_amount": fish.toString(),
+        "diagnosis": "mati karena sakit"
+      },
+    );
+
+    if (response.statusCode == 200) {
+      print(response.body);
+      return true;
+    } else {
+      print(response.body);
+      return false;
+    }
+  }
 }

@@ -91,8 +91,7 @@ class FishRecapPage extends StatelessWidget {
             top: defaultSpace, right: defaultMargin, left: defaultMargin),
         child: TextButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => FishDeathEntryPage()));
+            Get.to(() => FishDeathEntryPage(), arguments: controller.pond);
           },
           style: TextButton.styleFrom(
             backgroundColor: Colors.green.shade400,

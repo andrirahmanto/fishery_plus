@@ -35,6 +35,7 @@ class Urls {
       '$baseUrl/fishgradings/activation/$activation_id';
 
   // Fish Death
+  static final String fishDeaths = '$baseUrl/fishdeath';
   static String fishDeath(String? activation_id) =>
       '$baseUrl/fishdeath/activation/$activation_id';
 }
