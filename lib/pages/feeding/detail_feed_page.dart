@@ -89,8 +89,9 @@ class DetailFeedPage extends StatelessWidget {
             top: defaultSpace, right: defaultMargin, left: defaultMargin),
         child: TextButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => FeedEntryPage()));
+            Get.to(() => FeedEntryPage(), arguments: {
+              "pond": controller.pond,
+            });
           },
           style: TextButton.styleFrom(
             backgroundColor: Colors.green.shade400,

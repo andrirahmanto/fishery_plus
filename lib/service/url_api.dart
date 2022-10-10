@@ -12,7 +12,11 @@ class Urls {
   // Activation
   static String activation(String? pondId) => '$baseUrl/ponds/status/$pondId';
 
+  // Feed Type
+  static final String feedType = '$baseUrl/feedtypes';
+
   // Feed History
+  static final String feedhistorys = '$baseUrl/feedhistorys';
   static String feedHistoryMonthly(String? activationId) =>
       '$baseUrl/feedhistorys/month/$activationId';
   static String feedHistoryWeekly(String? activationId, month) =>

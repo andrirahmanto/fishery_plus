@@ -90,4 +90,36 @@ class FeedHistoryService {
       throw Exception('Gagal Get Activation!');
     }
   }
+
+  Future<bool> postFeedHistory({
+    required String? pondId,
+    required String? feedTypeId,
+    required String? feedDose,
+  }) async {
+    print({
+      "pond_id": pondId,
+      "feed_type_id": feedTypeId,
+      "feed_dose": feedDose,
+    });
+    final response = await http.post(
+      Uri.parse(Urls.feedhistorys),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      encoding: Encoding.getByName('utf-8'),
+      body: {
+        "pond_id": pondId,
+        "feed_type_id": feedTypeId,
+        "feed_dose": feedDose,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      print(response.body);
+      return true;
+    } else {
+      print(response.body);
+      return false;
+    }
+  }
 }
