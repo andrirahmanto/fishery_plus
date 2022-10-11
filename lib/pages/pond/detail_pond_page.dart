@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:fish/pages/component/activation_card.dart';
 import 'package:fish/pages/component/pond_card.dart';
 import 'package:fish/pages/pond/activation_breed_page.dart';
+import 'package:fish/pages/pond/deactivation_breed_page.dart';
 import 'package:fish/pages/pond/add_pond_page.dart';
 import 'package:fish/pages/pond/detail_pond_controller.dart';
 import 'package:fish/pages/pond/pond_controller.dart';
@@ -110,7 +111,9 @@ class DetailPondPage extends StatelessWidget {
         margin: EdgeInsets.only(
             top: defaultSpace, right: defaultMargin, left: defaultMargin),
         child: TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => DeactivationBreedPage(), arguments: controller.pond);
+          },
           style: TextButton.styleFrom(
             backgroundColor: Colors.amber,
             shape: RoundedRectangleBorder(
