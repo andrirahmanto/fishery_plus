@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:fish/pages/component/fish_card.dart';
 import 'package:fish/pages/component/statistic_card.dart';
 import 'package:fish/pages/component/water_card.dart';

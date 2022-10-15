@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:fish/theme.dart';
 
 class FishPage extends StatelessWidget {
   const FishPage({Key? key}) : super(key: key);

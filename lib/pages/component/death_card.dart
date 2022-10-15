@@ -1,8 +1,6 @@
 import 'package:fish/models/fishDeath_model.dart';
 import 'package:flutter/material.dart';
-import 'package:fish/pages/grading/detail_grading_page.dart';
 import 'package:fish/theme.dart';
-import 'package:get/get.dart';
 
 class DeathCard extends StatelessWidget {
   final FishDeath? fishDeath;

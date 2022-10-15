@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:fish/models/pond_model.dart';
-import 'package:fish/models/statistic_model.dart';
 import 'package:fish/service/url_api.dart';
 import 'package:http/http.dart' as http;
 

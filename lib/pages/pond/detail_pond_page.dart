@@ -1,11 +1,6 @@
-import 'dart:async';
-
 import 'package:fish/pages/component/activation_card.dart';
-import 'package:fish/pages/component/pond_card.dart';
 import 'package:fish/pages/pond/activation_breed_page.dart';
-import 'package:fish/pages/pond/add_pond_page.dart';
 import 'package:fish/pages/pond/detail_pond_controller.dart';
-import 'package:fish/pages/pond/pond_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
@@ -317,7 +312,7 @@ class DetailPondPage extends StatelessWidget {
                   : activationButton(),
               detail(),
               activationTitle(),
-              controller.activations.length < 1
+              controller.activations.isEmpty
                   ? emptyListActivation()
                   : listActivation(),
               SizedBox(

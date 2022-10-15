@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:fish/pages/grading/grading_entry_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:fish/pages/grading/fish_type_controller.dart';
 import 'package:fish/theme.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

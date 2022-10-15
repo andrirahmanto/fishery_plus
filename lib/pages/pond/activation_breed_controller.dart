@@ -1,8 +1,6 @@
 import 'dart:convert';
 
 import 'package:fish/models/pond_model.dart';
-import 'package:fish/pages/dashboard.dart';
-import 'package:fish/service/activation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

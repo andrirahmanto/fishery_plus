@@ -18,7 +18,7 @@ class ActivationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => DetailBreedPage(),
+        Get.to(() => const DetailBreedPage(),
             arguments: {"activation": activation, "pond": pond});
       },
       child: Container(
@@ -26,7 +26,7 @@ class ActivationCard extends StatelessWidget {
         margin: EdgeInsets.only(
           top: defaultMargin,
         ),
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           border: Border.all(color: primaryColor),

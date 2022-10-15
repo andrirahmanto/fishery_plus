@@ -7,7 +7,6 @@ import 'package:fish/models/pond_model.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fish/theme.dart';
-import 'package:get/get.dart';
 
 class FeedHourCard extends StatelessWidget {
   final Activation? activation;

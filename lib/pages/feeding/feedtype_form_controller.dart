@@ -26,5 +26,6 @@ class FeedTypeFormController extends GetxController {
         return feedType.id;
       }
     }
+    return null;
   }
 }

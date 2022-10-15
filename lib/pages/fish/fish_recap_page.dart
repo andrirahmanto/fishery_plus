@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:fish/models/fish_model.dart';
 import 'package:fish/pages/component/death_card.dart';
 import 'package:fish/pages/fish/fish_recap_controller.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +5,6 @@ import 'package:fish/pages/fish/fish_death_entry_page.dart';
 import 'package:fish/theme.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class FishRecapPage extends StatelessWidget {
   const FishRecapPage({Key? key}) : super(key: key);

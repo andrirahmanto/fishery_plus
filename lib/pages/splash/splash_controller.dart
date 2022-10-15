@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:fish/pages/dashboard.dart';
-import 'package:fish/pages/home/home_page.dart';
-import 'package:fish/pages/pond/pond_page.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {

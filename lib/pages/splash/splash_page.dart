@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:fish/pages/splash/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/theme.dart';

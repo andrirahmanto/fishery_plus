@@ -1,14 +1,8 @@
-import 'dart:async';
-
-import 'package:fish/pages/component/pond_card.dart';
 import 'package:fish/pages/pond/pond_controller.dart';
-import 'package:fish/pages/pond/shape_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/theme.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
-import 'material_controller.dart';
 
 class AddPondPage extends StatelessWidget {
   const AddPondPage({Key? key}) : super(key: key);

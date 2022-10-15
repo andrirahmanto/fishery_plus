@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:fish/models/activation_model.dart';
 import 'package:fish/models/pond_model.dart';
 import 'package:fish/service/activation_service.dart';
-import 'package:fish/service/pond_service.dart';
 import 'package:get/get.dart';
 
 class DetailPondController extends GetxController {

@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:fish/pages/fish/fish_death_entry_controller.dart';
-import 'package:fish/pages/fish/fish_type_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:fish/theme.dart';
 import 'package:flutter/services.dart';

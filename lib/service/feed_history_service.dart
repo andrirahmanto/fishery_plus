@@ -1,12 +1,8 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'package:fish/models/FeedHistoryDaily.dart';
 import 'package:fish/models/FeedHistoryHourly.dart';
 import 'package:fish/models/FeedHistoryMonthly.dart';
 import 'package:fish/models/FeedHistoryWeekly.dart';
-import 'package:fish/models/activation_model.dart';
-import 'package:fish/models/pond_model.dart';
-import 'package:fish/models/statistic_model.dart';
 import 'package:fish/service/url_api.dart';
 import 'package:http/http.dart' as http;
 

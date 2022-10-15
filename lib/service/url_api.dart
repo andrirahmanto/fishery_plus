@@ -1,12 +1,12 @@
 class Urls {
-  static final String baseUrl = 'http://jft.web.id/fishapi/api';
+  static const String baseUrl = 'http://jft.web.id/fishapi/api';
   // static final String baseUrl = 'http://10.0.2.2:5000/api';
 
   // Home
-  static final String statistic = '$baseUrl/statistic';
+  static const String statistic = '$baseUrl/statistic';
 
   // Pond
-  static final String ponds = '$baseUrl/ponds';
+  static const String ponds = '$baseUrl/ponds';
   static String pond(String? pondId) => '$baseUrl/ponds/$pondId';
 
   // Activation
@@ -16,10 +16,10 @@ class Urls {
       '$baseUrl/ponds/$pondId/activation';
 
   // Feed Type
-  static final String feedType = '$baseUrl/feedtypes';
+  static const String feedType = '$baseUrl/feedtypes';
 
   // Feed History
-  static final String feedhistorys = '$baseUrl/feedhistorys';
+  static const String feedhistorys = '$baseUrl/feedhistorys';
   static String feedHistoryMonthly(String? activationId) =>
       '$baseUrl/feedhistorys/month/$activationId';
   static String feedHistoryWeekly(String? activationId, month) =>
@@ -30,12 +30,12 @@ class Urls {
       '$baseUrl/feedhistorys/hour/$activationId/$date';
 
   // Fish Grading
-  static final String fishGradings = '$baseUrl/fishgradings';
-  static String fishGrading(String? activation_id) =>
-      '$baseUrl/fishgradings/activation/$activation_id';
+  static const String fishGradings = '$baseUrl/fishgradings';
+  static String fishGrading(String? activationId) =>
+      '$baseUrl/fishgradings/activation/$activationId';
 
   // Fish Death
-  static final String fishDeaths = '$baseUrl/fishdeath';
-  static String fishDeath(String? activation_id) =>
-      '$baseUrl/fishdeath/activation/$activation_id';
+  static const String fishDeaths = '$baseUrl/fishdeath';
+  static String fishDeath(String? activationId) =>
+      '$baseUrl/fishdeath/activation/$activationId';
 }
